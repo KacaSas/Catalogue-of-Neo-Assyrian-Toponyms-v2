@@ -1,0 +1,7 @@
+pandas
+csv
+streamlit
+os
+PIL
+streamlit-aggrid
+base64
