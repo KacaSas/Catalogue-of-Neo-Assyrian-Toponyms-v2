@@ -6,8 +6,6 @@ from PIL import Image, ImageOps
 import streamlit as st
 from st_aggrid import GridOptionsBuilder, AgGrid, JsCode
 import base64
-import sys
-import path
 
 st.set_page_config(page_title='Cuneiform signs', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -57,9 +55,9 @@ option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images')
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList.csv')
-	data.fillna('', inplace=True)
-	st.write(data)
-
+	data = data.fillna(value='+++++++')
+	#data.fillna('', inplace=True)
+	
 	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
 	colu1, colu2 = st.columns([19, 3])
@@ -158,7 +156,7 @@ if option == 'Cuneiform signs':
 					st.write('<table border=0 width="100%"><tr><td width="40%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>End of 3<sup>rd</sup> millennia form:</b><br>– font <i>CuneiformComposite.ttf</i></td><td width="60%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "CuneiformComposite" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian monumental form:</b><br>– font <i>SantakkuM.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "SantakkuM" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian cursive form:</b><br>– font <i>Santakku.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Santakku" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Assurbanipal.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Assurbanipal" style="font-size: 35pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Sinacherib.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Sinacherib" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Values:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Values1'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>MesZL:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['MesZL'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>ABZ/Labat:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['ABZ/Labat'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Unicode codepoint and name:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Codepoint'], '</td></tr></table>', unsafe_allow_html=True)
 				with c2:
 					st.write('<b><font style="font-size: 23px">Image(s)</font></b>', unsafe_allow_html=True)
-					path = './Signs' + '/' + str(row['Path'])
+					path = './resources/signs' + '/' + str(row['Path'])
 
 					colNumber = st.slider('Images size', 1, 13, 6, label_visibility='collapsed')
 						
@@ -192,7 +190,7 @@ if option == 'Cuneiform signs':
 					with colum2:
 						st.write('<sub><b><font style="font-size: 19px">All images containing the string<font color = "#ffffab">', searchSign, '</font></b></sub>', unsafe_allow_html=True)
 					if showAllSigns:
-						path3 = './Signs/000-ALL'
+						path3 = './resources/signs/000-ALL'
 						files3 = listdir(path3)
 						images3 = pd.DataFrame({'file': files3, 'Sign3': files3})
 						foundSigns = images3.loc[images3['Sign3'].str.contains(searchSign, case=False, regex=True)]
