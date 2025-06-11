@@ -6,6 +6,7 @@ from PIL import Image, ImageOps
 import streamlit as st
 from st_aggrid import GridOptionsBuilder, AgGrid, JsCode
 import base64
+import path
 
 st.set_page_config(page_title='Cuneiform signs', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -34,7 +35,7 @@ option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images')
 
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
-	data = pd.read_csv('SignList/SignList.csv')
+	data = pd.read_csv('./SignList/SignList.csv')
 	data = data.fillna(value='+++++++')
 
 	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
