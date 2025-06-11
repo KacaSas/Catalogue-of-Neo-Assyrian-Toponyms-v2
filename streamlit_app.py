@@ -6,6 +6,7 @@ from PIL import Image, ImageOps
 import streamlit as st
 from st_aggrid import GridOptionsBuilder, AgGrid, JsCode
 import base64
+import sys
 import path
 
 dir = path.Path(__file__).abspath()
