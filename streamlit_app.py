@@ -50,7 +50,7 @@ def createGallery(foundSignsList):
 				with cols[j]:
 					st.empty()
 
-option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images'), label_visibility='collapsed')
+option = st.selectbox('Main menu', ('Cuneiform signs', 'Something else'), label_visibility='collapsed')
 
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
@@ -221,8 +221,8 @@ if option == 'Cuneiform signs':
 		st.markdown('**Tools:**', unsafe_allow_html=True)
 		st.markdown('– Cuneify REPL (Jon Knowles): https://amazing-chandrasekhar-e6c92b.netlify.app/index.html.<br>– CuneifyPlus (Tom Gillam): https://cuneify.herokuapp.com/.<br>– Cuneify (Steve Tinney): http://oracc.museum.upenn.edu/saao/knpp/cuneiformrevealed/cuneify/.<br>– KUR.NU.GI4.A – Cuneiform Script Analyzer (uyum): https://kurnugia.web.app/.<br>– GI-DUB – Sumerian Cuneiform Input Aid (uyum): https://qantuppi.web.app/.', unsafe_allow_html=True)
 
-if option == 'Crop and resize images':
-	st.header('Crop and resize images') 
+if option == 'Something else':
+	st.header('Something else') 
 
 	def text_field(label, columns=None, **input_params):
 		column1, column2 = st.columns(columns or [1, 12])
