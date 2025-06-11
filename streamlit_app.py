@@ -198,7 +198,7 @@ if option == 'Cuneiform signs':
 						foundSigns3 = []
 
 						if len(foundSigns33.columns) != 0:
-							for index, row in foundSigns.iterrows():
+							for index, row in foundSigns33.iterrows():
 								foundSigns3.append([path3 + '/' + row['Sign3'], row['Sign3']])
 
 						path9 = './resources/signs/000-ALL02'
@@ -209,7 +209,7 @@ if option == 'Cuneiform signs':
 						foundSigns9 = []
 
 						if len(foundSigns99.columns) != 0:
-							for index, row in foundSigns.iterrows():
+							for index, row in foundSigns99.iterrows():
 								foundSigns9.append([path9 + '/' + row['Sign9'], row['Sign9']])
 
 						foundSigns77 = foundSigns3 + foundSigns9
