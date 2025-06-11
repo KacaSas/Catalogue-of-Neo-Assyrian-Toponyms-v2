@@ -57,7 +57,7 @@ option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images')
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList1.csv')
-	data = data.fillna(value='+++++++')
+	data = data.fillna(value='+++++++', inplace=True)
 	st.write(data)
 
 	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
