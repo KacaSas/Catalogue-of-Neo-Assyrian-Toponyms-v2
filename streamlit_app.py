@@ -8,6 +8,9 @@ from st_aggrid import GridOptionsBuilder, AgGrid, JsCode
 import base64
 import path
 
+dir = path.Path(__file__).abspath()
+sys.append.path(dir.parent.parent)
+
 st.set_page_config(page_title='Cuneiform signs', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
 def clearSignListForm():
