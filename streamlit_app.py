@@ -158,7 +158,7 @@ if option == 'Cuneiform signs':
 					st.write('<b><font style="font-size: 23px">Image(s)</font></b>', unsafe_allow_html=True)
 					path = './resources/signs' + '/' + str(row['Path'])
 
-					colNumber = st.slider('Column count', 1, 13, 6, label_visibility='visible')
+					colNumber = st.slider('Column count:', 1, 13, 6, label_visibility='visible')
 						
 					try:
 						files = listdir(path)
