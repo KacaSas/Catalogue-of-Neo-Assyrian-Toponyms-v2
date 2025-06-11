@@ -57,6 +57,7 @@ option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images')
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList1.csv')
+	st.write(data)
 	data = data.fillna(value='+++++++', inplace=True)
 	st.write(data)
 
