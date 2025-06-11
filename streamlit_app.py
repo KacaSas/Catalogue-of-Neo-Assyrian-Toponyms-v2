@@ -58,7 +58,7 @@ if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList1.csv')
 	st.write(data)
-	data = data.fillna(value='+++++++', inplace=False)
+	data.fillna('', inplace=True)
 	st.write(data)
 
 	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
