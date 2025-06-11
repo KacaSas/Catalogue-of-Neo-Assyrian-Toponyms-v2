@@ -224,49 +224,49 @@ if option == 'Cuneiform signs':
 if option == 'Something else':
 	st.header('Something else') 
 
-	def text_field(label, columns=None, **input_params):
-		column1, column2 = st.columns(columns or [1, 12])
-		column1.markdown(label)
-		input_params.setdefault('key', label)  # sets a default key to avoid duplicate key errors
-		return column2.text_input('label', **input_params, label_visibility='collapsed')  # forward text input parameters
+#	def text_field(label, columns=None, **input_params):
+#		column1, column2 = st.columns(columns or [1, 12])
+#		column1.markdown(label)
+#		input_params.setdefault('key', label)  # sets a default key to avoid duplicate key errors
+#		return column2.text_input('label', **input_params, label_visibility='collapsed')  # forward text input parameters
 
-	order = text_field('Input directory:', value='./Signs/')  # input path
-	order = text_field('Output files size:', value='128')  # size of the resulting canvas
-	title = text_field('Output files suffix:', value='_new')  # new file suffix
+#	order = text_field('Input directory:', value='./Signs/')  # input path
+#	order = text_field('Output files size:', value='128')  # size of the resulting canvas
+#	title = text_field('Output files suffix:', value='_new')  # new file suffix
 
 	# ChatGPT - for RGB instead of grayscale, add .convert("RGB") instead of "L" and change the background color in Image.new("RGB", ...) to (255, 255, 255)
 
-	if st.button('Crop and resize images', key='cropImages', use_container_width=True):
-		if inputDir != '':
-			padding = 3
-			for filename in os.listdir(inputDir):
-				if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-					filepath = os.path.join(inputDir, filename)
-					img = Image.open(filepath).convert("L")  # conversion to grayscale
-					inverted = ImageOps.invert(img)  # inversion to trim white edges
-					bbox = inverted.getbbox()
+#	if st.button('Crop and resize images', key='cropImages', use_container_width=True):
+#		if inputDir != '':
+#			padding = 3
+#			for filename in os.listdir(inputDir):
+#				if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+#					filepath = os.path.join(inputDir, filename)
+#					img = Image.open(filepath).convert("L")  # conversion to grayscale
+#					inverted = ImageOps.invert(img)  # inversion to trim white edges
+#					bbox = inverted.getbbox()
 
-					if bbox:
-						cropped = img.crop(bbox)
-						w, h = cropped.size
+#					if bbox:
+#						cropped = img.crop(bbox)
+#						w, h = cropped.size
 
 						# determine the square canvas size
-						side = max(w, h) + 2 * padding
-						square_img = Image.new("L", (side, side), 255)
+#						side = max(w, h) + 2 * padding
+#						square_img = Image.new("L", (side, side), 255)
 
 						# calculate left and top offset for centering
-						left = (side - w) // 2
-						top = (side - h) // 2
+#						left = (side - w) // 2
+#						top = (side - h) // 2
 
-						square_img.paste(cropped, (left, top))
+#						square_img.paste(cropped, (left, top))
 
 						# resize to final size (e.g. 256x256)
-						final_img = square_img.resize((outputSize, outputSize), Image.LANCZOS)
+#						final_img = square_img.resize((outputSize, outputSize), Image.LANCZOS)
 
 						# saving
-						name, ext = os.path.splitext(filename)
-						newName = f'{name}{suffix}{ext}'
-						new_path = os.path.join(inputDir, newName)
-						final_img.save(new_path)
-						st.write('Saved as: ', newName)
+#						name, ext = os.path.splitext(filename)
+#						newName = f'{name}{suffix}{ext}'
+#						new_path = os.path.join(inputDir, newName)
+#						final_img.save(new_path)
+#						st.write('Saved as: ', newName)
 			
