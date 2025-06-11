@@ -53,19 +53,7 @@ def createGallery(foundSignsList):
 					st.empty()
 
 option = st.selectbox('Main menu', ('Cuneiform signs', 'Crop and resize images'), label_visibility='collapsed')
-###
-df = pd.DataFrame({
-    "Name": ["Alice", None, "Charlie"],
-    "Age": [25, 30, None]
-})
-df.fillna("", inplace=True)  # Důležité
 
-gb = GridOptionsBuilder.from_dataframe(df)
-gb.configure_default_column(editable=True)
-grid_options = gb.build()
-
-AgGrid(df, gridOptions=grid_options)
-###
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList1.csv')
