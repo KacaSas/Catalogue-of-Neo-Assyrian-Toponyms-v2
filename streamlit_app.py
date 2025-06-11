@@ -9,26 +9,6 @@ import base64
 
 st.set_page_config(page_title='Cuneiform signs', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
-# load cuneiform fonts
-def load_font_css(font_name, font_path):
-	with open(font_path, "rb") as f:
-		font_data = f.read()
-		b64_font = base64.b64encode(font_data).decode()
-		return f"""
-		@font-face {{
-			font-family: '{font_name}';
-			src: url(data:font/ttf;base64,{b64_font}) format('truetype');
-		}}
-		"""
-fonts_css = ""
-fonts_css += load_font_css("Sinacherib", "fonts/Sinacherib.ttf")
-fonts_css += load_font_css("Assurbanipal", "fonts/Assurbanipal.ttf")
-fonts_css += load_font_css("Santakku", "fonts/Santakku.ttf")
-fonts_css += load_font_css("SantakkuM", "fonts/SantakkuM.ttf")
-fonts_css += load_font_css("CuneiformComposite", "fonts/CuneiformComposite.ttf")
-
-st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert to the page
-
 def clearSignListForm():
 	st.session_state['123998'] = ''
 
