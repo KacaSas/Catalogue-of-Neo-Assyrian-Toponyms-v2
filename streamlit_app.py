@@ -138,7 +138,7 @@ if option == 'Cuneiform signs':
 			fit_columns_on_grid_load=True,
 			theme='balham',  # themes: streamlit, light, dark/balham, blue, fresh, material
 			enable_enterprise_modules=False,
-			height=150, 
+			height=250, 
 			width='100%',
 			reload_data=False
 		)
