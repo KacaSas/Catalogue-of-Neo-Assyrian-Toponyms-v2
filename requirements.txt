@@ -1,4 +1,2 @@
-os
-PIL
 streamlit-aggrid
 base64
