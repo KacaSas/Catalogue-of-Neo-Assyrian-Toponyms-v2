@@ -96,6 +96,8 @@ if option == 'Cuneiform signs':
 	"""
 	)
 
+	st.markdown(f"<style>{load_font_css('CuneiformComposite', 'resources/fonts/CuneiformComposite.ttf')}</style>", unsafe_allow_html=True)
+
 	gb = GridOptionsBuilder.from_dataframe(data)
 	gb.configure_side_bar()
 	gb.configure_default_column(
