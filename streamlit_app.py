@@ -74,6 +74,14 @@ if option == 'Cuneiform signs':
 	FoundData = pd.concat([FoundData0, FoundData1, FoundData2, FoundData3, FoundData4], axis=0, join='outer', ignore_index=False, keys=None)
 	FoundData = FoundData.drop_duplicates(inplace=False)
 
+	st.markdown("""
+		<style>
+			.ag-theme-streamlit .ag-cell {
+				font-family: 'CuneiformComposite', sans-serif !important;
+			}
+		</style>
+	""", unsafe_allow_html=True)
+
 	cellsytle_jscode = JsCode(
 		"""
 	function(params) {
