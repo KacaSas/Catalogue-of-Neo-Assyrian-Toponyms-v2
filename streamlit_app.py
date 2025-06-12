@@ -76,7 +76,7 @@ if option == 'Cuneiform signs':
 
 	st.markdown("""
 		<style>
-			.ag-theme-streamlit .ag-cell {
+			.ag-theme-balham .ag-cell {
 				font-family: 'CuneiformComposite', sans-serif !important;
 			}
 		</style>
