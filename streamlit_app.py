@@ -75,11 +75,14 @@ if option == 'Cuneiform signs':
 	FoundData = FoundData.drop_duplicates(inplace=False)
 
 	st.markdown("""
-		<style>
-			.ag-theme-balham .ag-cell {
-				font-family: 'CuneiformComposite', sans-serif !important;
-			}
-		</style>
+	<style>
+	.ag-theme-balham .ag-cell.cuneiform {
+		font-family: 'CuneiformComposite' !important;
+		font-size: 20pt !important;
+		color: white;
+		backgroundColor: #0E1117;
+	}
+	</style>
 	""", unsafe_allow_html=True)
 
 	cellsytle_jscode = JsCode(
@@ -128,7 +131,8 @@ if option == 'Cuneiform signs':
 	)
 	gb.configure_selection('', use_checkbox=True, groupSelectsChildren='Group checkbox select children')
 	gb.configure_columns(['Name', 'Values', 'Meaning', 'MesZL', 'Values1', 'ABZ/Labat', 'Codepoint'], cellStyle=cellsytle_jscode)
-	gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'})
+	#gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'})
+	gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'}, cellClass="cuneiform")
 	gb.configure_column('Values1', hide=True)
 	gb.configure_column('Values2', hide=True)
 	gb.configure_column('Values3', hide=True)
