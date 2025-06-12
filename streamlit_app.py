@@ -96,8 +96,6 @@ if option == 'Cuneiform signs':
 	"""
 	)
 
-	st.markdown(f"<style>{load_font_css('CuneiformComposite', 'resources/fonts/CuneiformComposite.ttf')}</style>", unsafe_allow_html=True)
-
 	gb = GridOptionsBuilder.from_dataframe(data)
 	gb.configure_side_bar()
 	gb.configure_default_column(
@@ -122,7 +120,7 @@ if option == 'Cuneiform signs':
 	)
 	gb.configure_selection('', use_checkbox=True, groupSelectsChildren='Group checkbox select children')
 	gb.configure_columns(['Name', 'Values', 'Meaning', 'MesZL', 'Values1', 'ABZ/Labat', 'Codepoint'], cellStyle=cellsytle_jscode)
-	gb.configure_columns(['Sign'], cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'})
+	gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'})
 	gb.configure_column('Values1', hide=True)
 	gb.configure_column('Values2', hide=True)
 	gb.configure_column('Values3', hide=True)
