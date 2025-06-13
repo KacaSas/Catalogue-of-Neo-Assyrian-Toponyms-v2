@@ -66,13 +66,13 @@ if option == 'Cuneiform signs':
 	with colu2:
 		clearSignListForm = st.button('Clear form', key='clearSignListForm', on_click=clearSignListForm, use_container_width=True)  # clear form
 
-	FoundData0 = data.loc[data['Name'].str.contains(searchSign, case=False, regex=True)]
-	FoundData1 = data.loc[data['Values'].str.contains(searchSign, case=False, regex=True)]
-	FoundData2 = data.loc[data['Codepoint'].str.contains(searchSign, case=False, regex=True)]
-	FoundData3 = data.loc[data['Sign'].str.contains(searchSign, case=False, regex=True)]
-	FoundData4 = data.loc[data['Values3'].str.contains(searchSign, case=False, regex=True)]
-	FoundData = pd.concat([FoundData0, FoundData1, FoundData2, FoundData3, FoundData4], axis=0, join='outer', ignore_index=False, keys=None)
-	FoundData = FoundData.drop_duplicates(inplace=False)
+	foundData0 = data.loc[data['Name'].str.contains(searchSign, case=False, regex=True)]
+	foundData1 = data.loc[data['Values'].str.contains(searchSign, case=False, regex=True)]
+	foundData2 = data.loc[data['Codepoint'].str.contains(searchSign, case=False, regex=True)]
+	foundData3 = data.loc[data['Sign'].str.contains(searchSign, case=False, regex=True)]
+	foundData4 = data.loc[data['Values3'].str.contains(searchSign, case=False, regex=True)]
+	foundData = pd.concat([foundData0, foundData1, foundData2, foundData3, foundData4], axis=0, join='outer', ignore_index=False, keys=None)
+	foundData = foundData.drop_duplicates(inplace=False)
 
 	cellsytle_jscode = JsCode(
 		"""
@@ -128,9 +128,9 @@ if option == 'Cuneiform signs':
 	gridOptions = gb.build()
 
 	with st.expander('Show list of found items:', expanded=True):
-		st.write('Found ', FoundData['Sign'].count(), 'items.')
+		st.write('Found ', foundData['Sign'].count(), 'items.')
 		grid_response = AgGrid(
-			FoundData,
+			foundData,
 			allow_unsafe_jscode=True,
 			gridOptions=gridOptions,
 			DataReturnMode='AS_INPUT',
