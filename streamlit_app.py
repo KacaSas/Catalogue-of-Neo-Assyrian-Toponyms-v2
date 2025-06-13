@@ -54,9 +54,7 @@ option = st.selectbox('Main menu', ('Cuneiform signs', 'Something else'), label_
 
 if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
-	data = pd.read_csv('resources/signList/SignList.csv')
-	data = data.fillna(value='+++++++')
-	#data.fillna('', inplace=True)
+	data = pd.read_csv('resources/signList/SignList.csv', keep_default_na=False, na_values=[])
 	
 	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
