@@ -27,7 +27,7 @@ fonts_css += load_font_css("Santakku", "resources/fonts/Santakku.ttf")
 fonts_css += load_font_css("SantakkuM", "resources/fonts/SantakkuM.ttf")
 fonts_css += load_font_css("CuneiformComposite", "resources/fonts/CuneiformComposite.ttf")
 
-st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert fonts to the page
+st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert fonts into the app page
 
 def clearSignListForm():
 	st.session_state['123998'] = ''
