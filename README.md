@@ -1,5 +1,5 @@
 # kliny
-**Requirments:**
+**Requirements:**
 * streamlit
 * pandas
 * csv
