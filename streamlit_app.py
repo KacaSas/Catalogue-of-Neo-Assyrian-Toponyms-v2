@@ -30,7 +30,10 @@ fonts_css += load_font_css("CuneiformComposite", "resources/fonts/CuneiformCompo
 st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert fonts into the app page
 
 def clearSignListForm():
-	st.session_state['123998'] = ''
+	st.session_state['searchSign'] = ''
+	st.session_state['searchMesZL'] = ''
+	st.session_state['searchABZ'] = ''
+	st.session_state['searchCodepoint'] = ''
 
 def createGallery(foundSignsList):
 	# divide images into rows according to the number of columns
@@ -56,21 +59,51 @@ if option == 'Cuneiform signs':
 	st.header('Cuneiform') 
 	data = pd.read_csv('resources/signList/SignList.csv', keep_default_na=False, na_values=[])
 	
-	st.write('<b><font style="font-size: 21px">Search sign</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
-
-	colu1, colu2 = st.columns([19, 3])
+	colu1, colu2, colu3, colu4 = st.columns([3, 1, 1, 1])
 	with colu1:
-		searchSign = st.text_input('Search term (case insensitive, regular expressions allowed):', key=123998, label_visibility='collapsed')
+		searchSign = st.text_input('Name/Value:', key='searchSign', label_visibility='visible')
 	with colu2:
+		searchMesZL = st.text_input('MesZL number:', key='searchMesZL', label_visibility='visible')
+	with colu3:
+		searchABZ = st.text_input('ABZ/Labat number:', key='searchABZ', label_visibility='visible')
+	with colu4:
+		searchCodepoint = st.text_input('Unicode codepoint:', key='searchCodepoint', label_visibility='visible')
+	
+	with colu4:
 		clearSignListForm = st.button('Clear form', key='clearSignListForm', on_click=clearSignListForm, use_container_width=True)  # clear form
 
-	foundData0 = data.loc[data['Name'].str.contains(searchSign, case=False, regex=True)]
-	foundData1 = data.loc[data['Values'].str.contains(searchSign, case=False, regex=True)]
-	foundData2 = data.loc[data['Codepoint'].str.contains(searchSign, case=False, regex=True)]
-	foundData3 = data.loc[data['Sign'].str.contains(searchSign, case=False, regex=True)]
-	foundData4 = data.loc[data['Values3'].str.contains(searchSign, case=False, regex=True)]
-	foundData = pd.concat([foundData0, foundData1, foundData2, foundData3, foundData4], axis=0, join='outer', ignore_index=False, keys=None)
-	foundData = foundData.drop_duplicates(inplace=False)
+	data = pd.read_csv('resources/signList/SignList.csv', keep_default_na=False, na_values=[])
+
+	if searchSign != '':
+		foundSign1 = data.loc[data['Name'].str.contains(searchSign, case=False, regex=True)]
+		foundSign2 = data.loc[data['Values'].str.contains(searchSign, case=False, regex=True)]
+		foundSign3 = data.loc[data['Sign'].str.contains(searchSign, case=False, regex=True)]
+		foundSign4 = data.loc[data['Values3'].str.contains(searchSign, case=False, regex=True)]
+		foundSign = pd.concat([foundSign1, foundSign2, foundSign3, foundSign4], axis=0, join='outer', ignore_index=False, keys=None)
+		foundSign = foundSign.drop_duplicates(inplace=False)
+	else:
+		foundSign = data
+
+	if searchMesZL != '':
+		foundMesZL = foundSign.loc[data['MesZL'].str.contains(searchMesZL, case=False, regex=True)]
+	else:
+		foundMesZL = foundSign
+
+	if searchABZ != '':
+		foundABZ = foundMesZL.loc[data['ABZ/Labat'].str.contains(searchABZ, case=False, regex=True)]
+	else:
+		foundABZ = foundMesZL
+
+	if searchCodepoint != '':
+		searchCodepoint = searchCodepoint.replace('+', '\+')
+		searchCodepoint = searchCodepoint.replace('(', '\(')
+		searchCodepoint = searchCodepoint.replace(')', '\)')
+		searchCodepoint = searchCodepoint.replace('.', '\.')
+		foundCodepoint = foundABZ.loc[data['Codepoint'].str.contains(searchCodepoint, case=False, regex=True)]
+	else:
+		foundCodepoint = foundABZ
+
+	foundData = foundCodepoint
 
 	cellsytle_jscode = JsCode(
 		"""
@@ -110,7 +143,7 @@ if option == 'Cuneiform signs':
 				'    <span ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon"></span>' +
 				'    <span ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon"></span>' +
 				'    <span ref="eSortNone" class="ag-header-icon ag-sort-none-icon"></span>' +
-				'    <span ref="eText" class="ag-header-cell-text" role="columnheader" style="font-size: 15px; text-align: right;"></span>' +
+				'    <span ref="eText" class="ag-header-cell-text" role="columnheader" style="font-size: 16px; text-align: right; color: gray;"></span>' +
 				'    <span ref="eFilter" class="ag-header-icon ag-filter-icon"></span>' +
 				'  </div>' +
 				'</div>'
@@ -118,14 +151,16 @@ if option == 'Cuneiform signs':
 	)
 	gb.configure_selection('', use_checkbox=True, groupSelectsChildren='Group checkbox select children')
 	gb.configure_columns(['Name', 'Values', 'Meaning', 'MesZL', 'Values1', 'ABZ/Labat', 'Codepoint'], cellStyle=cellsytle_jscode)
-	gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'20px'})
+	gb.configure_column('Sign', cellStyle={'fontFamily': 'CuneiformComposite', 'color': 'white', 'backgroundColor': '#0E1117', 'font-size':'23px'})
+	gb.configure_column('Sign1', hide=True)
 	gb.configure_column('Values1', hide=True)
 	gb.configure_column('Values2', hide=True)
 	gb.configure_column('Values3', hide=True)
 	gb.configure_column('Path', hide=True)
+	gb.configure_grid_options(rowHeight=37)  # set row height
 	gridOptions = gb.build()
 
-	with st.expander('Show list of found items:', expanded=True):
+	with st.expander('List of found items:', expanded=True):
 		st.write('Found ', foundData['Sign'].count(), 'items.')
 		grid_response = AgGrid(
 			foundData,
@@ -134,7 +169,7 @@ if option == 'Cuneiform signs':
 			DataReturnMode='AS_INPUT',
 			GridUpdateMode='MODEL_CHANGED',
 			fit_columns_on_grid_load=True,
-			theme='balham',  # themes: streamlit, light, dark/balham, blue, fresh, material
+			theme='streamlit',  # themes: streamlit, light, dark/balham, blue, fresh, material
 			enable_enterprise_modules=False,
 			height=190, 
 			width='100%',
@@ -151,7 +186,7 @@ if option == 'Cuneiform signs':
 				st.header(row['Name'])
 				c1, c2 = st.columns([7, 7], gap='small', border=True)
 				with c1:
-					st.write('<table border=0 width="100%"><tr><td width="40%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>End of 3<sup>rd</sup> millennia form:</b><br>– font <i>CuneiformComposite.ttf</i></td><td width="60%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "CuneiformComposite" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian monumental form:</b><br>– font <i>SantakkuM.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "SantakkuM" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian cursive form:</b><br>– font <i>Santakku.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Santakku" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Assurbanipal.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Assurbanipal" style="font-size: 35pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Sinacherib.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Sinacherib" style="font-size: 30pt" color = "#ffffab">', row['Sign'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Values:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Values1'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>MesZL:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['MesZL'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>ABZ/Labat:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['ABZ/Labat'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Unicode codepoint and name:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Codepoint'], '</td></tr></table>', unsafe_allow_html=True)
+					st.write('<table border=0 width="100%"><tr><td width="40%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>End of 3<sup>rd</sup> millennia form:</b><br>– font <i>CuneiformComposite.ttf</i></td><td width="60%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "CuneiformComposite" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian monumental form:</b><br>– font <i>SantakkuM.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "SantakkuM" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian cursive form:</b><br>– font <i>Santakku.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Santakku" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Assurbanipal.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Assurbanipal" style="font-size: 35pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Sinacherib.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Sinacherib" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Values:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Values1'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>MesZL:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['MesZL'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>ABZ/Labat:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['ABZ/Labat'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Unicode codepoint and name:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Codepoint'], '</td></tr></table>', unsafe_allow_html=True)
 				with c2:
 					st.write('<b><font style="font-size: 23px">Image(s)</font></b>', unsafe_allow_html=True)
 					path = './resources/signs' + '/' + str(row['Path'])
@@ -180,39 +215,37 @@ if option == 'Cuneiform signs':
 						st.write('<font style="color:#FF4B4B; font-size: 16px"><b>No directory or images found!</b></font>', unsafe_allow_html=True)
 						st.write(path)
 
-					st.write('-------')
+					if searchSign != '':
+						st.write('-------')
 
-					colum1, colum2 = st.columns([1,39])
-					with colum1:
-						showAllSigns = st.checkbox('OK', label_visibility='collapsed')
-					with colum2:
-						st.write('<sub><b><font style="font-size: 19px">All images containing the string<font color = "#ffffab">', searchSign, '</font></b></sub>', unsafe_allow_html=True)
-					if showAllSigns:
-						path3 = './resources/signs/000-ALL'
-						files3 = listdir(path3)
-						images3 = pd.DataFrame({'file': files3, 'Sign3': files3})
-						foundSigns33 = images3.loc[images3['Sign3'].str.contains(searchSign, case=False, regex=True)]
+						colum1, colum2 = st.columns([1,39])
+						with colum1:
+							showAllSigns = st.checkbox('OK', label_visibility='collapsed')
+						with colum2:
+							st.write('<sub><b><font style="font-size: 19px">All images containing the string<font color = "#ffffab">', searchSign, '</font></b></sub>', unsafe_allow_html=True)
+						if showAllSigns:
+							path3 = './resources/signs/000-ALL'
+							files3 = listdir(path3)
+							images3 = pd.DataFrame({'file': files3, 'Sign3': files3, 'noSuffix': files3})
+							images3['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
+							images3['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
+							foundSigns = images3.loc[images3['noSuffix'].str.contains(searchSign, case=False, regex=True)]
 
-						foundSigns3 = []
+							foundSigns3 = []
 
-						if len(foundSigns33.columns) != 0:
-							for index, row in foundSigns33.iterrows():
-								foundSigns3.append([path3 + '/' + row['Sign3'], row['Sign3']])
+							if len(foundSigns.columns) != 0:
+								for index, row in foundSigns.iterrows():
+									foundSigns3.append([path3 + '/' + row['Sign3'], row['Sign3']])
 
-						path9 = './resources/signs/000-ALL02'
-						files9 = listdir(path9)
-						images9 = pd.DataFrame({'file': files9, 'Sign9': files9})
-						foundSigns99 = images9.loc[images9['Sign9'].str.contains(searchSign, case=False, regex=True)]
+							foundSigns7 = pd.DataFrame(foundSigns3, columns = ['signPath', 'Image']).sort_values(by=['Image'])
 
-						foundSigns9 = []
+							st.write('<b>Source directory: <font style="color:#ffffab">', path3, '</font></b> (', len(foundSigns7), 'items found)', unsafe_allow_html=True)
 
-						if len(foundSigns99.columns) != 0:
-							for index, row in foundSigns99.iterrows():
-								foundSigns9.append([path9 + '/' + row['Sign9'], row['Sign9']])
+							createGallery(foundSigns7)
 
-						foundSigns77 = foundSigns3 + foundSigns9
+	st.write('-------')
 
-						foundSigns7 = pd.DataFrame(foundSigns77, columns = ['signPath', 'Image']).sort_values(by=['Image'])
+	st.write('<b><font style="font-size: 29px">Tools and sources', unsafe_allow_html=True)
 
 						st.write('<b>Source directory: <font style="color:#ffffab">', path3, '</font> and <font style="color:#ffffab">', path9, '</font></b> (', len(foundSigns7), 'items found)', unsafe_allow_html=True)
 
