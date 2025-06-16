@@ -56,8 +56,8 @@ def createGallery(foundSignsList):
 option = st.selectbox('Main menu', ('Cuneiform signs', 'Something else'), label_visibility='collapsed')
 
 if option == 'Cuneiform signs':
-	st.header('Cuneiform') 
-	data = pd.read_csv('resources/signList/SignList.csv', keep_default_na=False, na_values=[])
+	st.write('<b><font style="font-size: 36px">Search cuneiform signs</font></b> <br>(case insensitive, regular expressions allowed)', unsafe_allow_html=True)
+	#st.header('Cuneiform') 
 	
 	colu1, colu2, colu3, colu4 = st.columns([3, 1, 1, 1])
 	with colu1:
@@ -226,31 +226,35 @@ if option == 'Cuneiform signs':
 						if showAllSigns:
 							path3 = './resources/signs/000-ALL'
 							files3 = listdir(path3)
-							images3 = pd.DataFrame({'file': files3, 'Sign3': files3, 'noSuffix': files3})
-							images3['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
-							images3['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
-							foundSigns = images3.loc[images3['noSuffix'].str.contains(searchSign, case=False, regex=True)]
+							images3 = pd.DataFrame({'file': files3, 'Sign3': files3})
+							foundSigns33 = images3.loc[images3['Sign3'].str.contains(searchSign, case=False, regex=True)]
 
 							foundSigns3 = []
 
-							if len(foundSigns.columns) != 0:
-								for index, row in foundSigns.iterrows():
+							if len(foundSigns33.columns) != 0:
+								for index, row in foundSigns33.iterrows():
 									foundSigns3.append([path3 + '/' + row['Sign3'], row['Sign3']])
 
-							foundSigns7 = pd.DataFrame(foundSigns3, columns = ['signPath', 'Image']).sort_values(by=['Image'])
+							path9 = './resources/signs/000-ALL02'
+							files9 = listdir(path9)
+							images9 = pd.DataFrame({'file': files9, 'Sign9': files9})
+							foundSigns99 = images9.loc[images9['Sign9'].str.contains(searchSign, case=False, regex=True)]
 
-							st.write('<b>Source directory: <font style="color:#ffffab">', path3, '</font></b> (', len(foundSigns7), 'items found)', unsafe_allow_html=True)
+							foundSigns9 = []
+
+							if len(foundSigns99.columns) != 0:
+								for index, row in foundSigns99.iterrows():
+									foundSigns9.append([path9 + '/' + row['Sign9'], row['Sign9']])
+
+							foundSigns77 = foundSigns3 + foundSigns9
+
+							foundSigns7 = pd.DataFrame(foundSigns77, columns = ['signPath', 'Image']).sort_values(by=['Image'])
+
+							st.write('<b>Source directory: <font style="color:#ffffab">', path3, '</font> and <font style="color:#ffffab">', path9, '</font></b> (', len(foundSigns7), 'items found)', unsafe_allow_html=True)
 
 							createGallery(foundSigns7)
-
 	st.write('-------')
 
-	st.write('<b><font style="font-size: 29px">Tools and sources', unsafe_allow_html=True)
-
-						st.write('<b>Source directory: <font style="color:#ffffab">', path3, '</font> and <font style="color:#ffffab">', path9, '</font></b> (', len(foundSigns7), 'items found)', unsafe_allow_html=True)
-
-						createGallery(foundSigns7)
-						
 	with st.expander('Cuneify REPL by Jon Knowles:', expanded=False):
 		
 		st.markdown(f'<iframe src="https://amazing-chandrasekhar-e6c92b.netlify.app/index.html" width="100%" height="450" style="background-color: #c7c9c9"></iframe>', unsafe_allow_html=True)
