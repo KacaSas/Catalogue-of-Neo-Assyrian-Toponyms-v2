@@ -226,8 +226,10 @@ if option == 'Cuneiform signs':
 						if showAllSigns:
 							path3 = './resources/signs/000-ALL'
 							files3 = listdir(path3)
-							images3 = pd.DataFrame({'file': files3, 'Sign3': files3})
-							foundSigns33 = images3.loc[images3['Sign3'].str.contains(searchSign, case=False, regex=True)]
+							images3 = pd.DataFrame({'file': files3, 'Sign3': files3, 'noSuffix': files3})
+							images3['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
+							images3['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
+							foundSigns33 = images3.loc[images3['noSuffix'].str.contains(searchSign, case=False, regex=True)]
 
 							foundSigns3 = []
 
@@ -237,8 +239,10 @@ if option == 'Cuneiform signs':
 
 							path9 = './resources/signs/000-ALL02'
 							files9 = listdir(path9)
-							images9 = pd.DataFrame({'file': files9, 'Sign9': files9})
-							foundSigns99 = images9.loc[images9['Sign9'].str.contains(searchSign, case=False, regex=True)]
+							images9 = pd.DataFrame({'file': files9, 'Sign9': files9, 'noSuffix': files9})
+							images9['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
+							images9['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
+							foundSigns99 = images9.loc[images9['noSuffix'].str.contains(searchSign, case=False, regex=True)]
 
 							foundSigns9 = []
 
