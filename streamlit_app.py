@@ -95,10 +95,10 @@ if option == 'Cuneiform signs':
 		foundABZ = foundMesZL
 
 	if searchCodepoint != '':
-		searchCodepoint = searchCodepoint.replace('+', '\+')
-		searchCodepoint = searchCodepoint.replace('(', '\(')
-		searchCodepoint = searchCodepoint.replace(')', '\)')
-		searchCodepoint = searchCodepoint.replace('.', '\.')
+		searchCodepoint = searchCodepoint.replace('+', '\\+')
+		searchCodepoint = searchCodepoint.replace('(', '\\(')
+		searchCodepoint = searchCodepoint.replace(')', '\\)')
+		searchCodepoint = searchCodepoint.replace('.', '\\.')
 		foundCodepoint = foundABZ.loc[data['Codepoint'].str.contains(searchCodepoint, case=False, regex=True)]
 	else:
 		foundCodepoint = foundABZ
