@@ -53,7 +53,15 @@ def createGallery(foundSignsList):
 				with cols[j]:
 					st.empty()
 
+# crop image names (remove suffix and part after '_', '-' or other chatacters)
+def extractImageName(ImageName):
+	noSuffix1 = ImageName.split('.')[0]
+	noSuffix = noSuffix1.split('-')[0]
+	return noSuffix.split('_')[0]
+
 option = st.selectbox('Main menu', ('Cuneiform signs', 'Something else'), label_visibility='collapsed')
+
+st.write('-------')
 
 if option == 'Cuneiform signs':
 	st.write('<b><font style="font-size: 36px">Search cuneiform signs</font></b> <br>(case insensitive, regular expressions allowed)', unsafe_allow_html=True)
@@ -198,12 +206,14 @@ if option == 'Cuneiform signs':
 						images = pd.DataFrame({'file': files, 'Sign': files})
 						images.set_index('file', inplace=True)
 
+						images['noSuffix'] = images['Sign'].apply(extractImageName)
+
 						foundSigns1 = []
 
 						if len(images.columns) != 0:
 							for index, row in images.iterrows():
 								path1 = path + '/' + row['Sign']
-								foundSigns1.append([path1, row['Sign']])
+								foundSigns1.append([path1, row['noSuffix']])
 
 						foundSigns2 = pd.DataFrame(foundSigns1, columns = ['signPath', 'Image']).sort_values(by=['Image'])
 
@@ -226,29 +236,27 @@ if option == 'Cuneiform signs':
 						if showAllSigns:
 							path3 = './resources/signs/000-ALL'
 							files3 = listdir(path3)
-							images3 = pd.DataFrame({'file': files3, 'Sign3': files3, 'noSuffix': files3})
-							images3['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
-							images3['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
+							images3 = pd.DataFrame({'file': files3, 'Sign3': files3})
+							images3['noSuffix'] = images3['Sign3'].apply(extractImageName)
 							foundSigns33 = images3.loc[images3['noSuffix'].str.contains(searchSign, case=False, regex=True)]
 
 							foundSigns3 = []
 
 							if len(foundSigns33.columns) != 0:
 								for index, row in foundSigns33.iterrows():
-									foundSigns3.append([path3 + '/' + row['Sign3'], row['Sign3']])
+									foundSigns3.append([path3 + '/' + row['Sign3'], row['noSuffix']])
 
 							path9 = './resources/signs/000-ALL02'
 							files9 = listdir(path9)
-							images9 = pd.DataFrame({'file': files9, 'Sign9': files9, 'noSuffix': files9})
-							images9['noSuffix'] = images3['noSuffix'].str.replace('.png', '', regex=False)
-							images9['noSuffix'] = images3['noSuffix'].str.replace('.jpg', '', regex=False)
+							images9 = pd.DataFrame({'file': files9, 'Sign9': files9})
+							images9['noSuffix'] = images9['Sign9'].apply(extractImageName)
 							foundSigns99 = images9.loc[images9['noSuffix'].str.contains(searchSign, case=False, regex=True)]
 
 							foundSigns9 = []
 
 							if len(foundSigns99.columns) != 0:
 								for index, row in foundSigns99.iterrows():
-									foundSigns9.append([path9 + '/' + row['Sign9'], row['Sign9']])
+									foundSigns9.append([path9 + '/' + row['Sign9'], row['noSuffix']])
 
 							foundSigns77 = foundSigns3 + foundSigns9
 
