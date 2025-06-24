@@ -67,17 +67,19 @@ if option == 'Cuneiform signs':
 	st.write('<b><font style="font-size: 36px">Search cuneiform signs</font></b> <br>(case insensitive, regular expressions allowed)', unsafe_allow_html=True)
 	#st.header('Cuneiform') 
 	
-	colu1, colu2, colu3, colu4 = st.columns([3, 1, 1, 1])
+	colu1, colu2, colu3, colu4, colu5 = st.columns([1, 2, 1, 1, 1])
 	with colu1:
-		searchSign = st.text_input('Name/Value:', key='searchSign', label_visibility='visible')
+		searchShape = st.selectbox('Initial wedge shape:', ('', '𒀸 AŠ', '𒋰 TAB', '𒀼 EŠ16', '𒀹 GE23', '𒌋 U', '𒁹 DIŠ'), key='searchShape', label_visibility='visible')
 	with colu2:
-		searchMesZL = st.text_input('MesZL number:', key='searchMesZL', label_visibility='visible')
+		searchSign = st.text_input('Name/Value:', key='searchSign', label_visibility='visible')
 	with colu3:
-		searchABZ = st.text_input('ABZ/Labat number:', key='searchABZ', label_visibility='visible')
+		searchMesZL = st.text_input('MesZL number:', key='searchMesZL', label_visibility='visible')
 	with colu4:
+		searchABZ = st.text_input('ABZ/Labat number:', key='searchABZ', label_visibility='visible')
+	with colu5:
 		searchCodepoint = st.text_input('Unicode codepoint:', key='searchCodepoint', label_visibility='visible')
 	
-	with colu4:
+	with colu5:
 		clearSignListForm = st.button('Clear form', key='clearSignListForm', on_click=clearSignListForm, use_container_width=True)  # clear form
 
 	data = pd.read_csv('resources/signList/SignList.csv', keep_default_na=False, na_values=[])
@@ -102,14 +104,33 @@ if option == 'Cuneiform signs':
 	else:
 		foundABZ = foundMesZL
 
+	if searchShape != '':
+		#MesZL: 𒀸 – 1–208 (AŠ), 𒋰 – 209–504 (TAB), 𒀼 – 505–574 (EŠ16), 𒀹 – 575–660 (GE23), 𒌋 – 661–747 (U),  𒁹 – 748–907 (DIŠ)
+		if searchShape == '𒀸 AŠ':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(1, 208)].sort_values(by=['MesZL'])
+		elif searchShape == '𒋰 TAB':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(209, 504)].sort_values(by=['MesZL'])
+		elif searchShape == '𒀼 EŠ16':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(505, 574)].sort_values(by=['MesZL'])
+		elif searchShape == '𒀹 GE23':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(575, 660)].sort_values(by=['MesZL'])
+		elif searchShape == '𒌋 U':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(661, 747)].sort_values(by=['MesZL'])
+		elif searchShape == '𒁹 DIŠ':
+			foundShape = foundABZ[foundABZ['MesZL_nu'].between(748, 907)].sort_values(by=['MesZL'])
+		else:
+			foundShape = foundABZ
+	else:
+		foundShape = foundABZ
+
 	if searchCodepoint != '':
 		searchCodepoint = searchCodepoint.replace('+', '\\+')
 		searchCodepoint = searchCodepoint.replace('(', '\\(')
 		searchCodepoint = searchCodepoint.replace(')', '\\)')
 		searchCodepoint = searchCodepoint.replace('.', '\\.')
-		foundCodepoint = foundABZ.loc[data['Codepoint'].str.contains(searchCodepoint, case=False, regex=True)]
+		foundCodepoint = foundShape.loc[data['Codepoint'].str.contains(searchCodepoint, case=False, regex=True)]
 	else:
-		foundCodepoint = foundABZ
+		foundCodepoint = foundShape
 
 	foundData = foundCodepoint
 
@@ -165,6 +186,7 @@ if option == 'Cuneiform signs':
 	gb.configure_column('Values2', hide=True)
 	gb.configure_column('Values3', hide=True)
 	gb.configure_column('Path', hide=True)
+	gb.configure_column('MesZL_nu', hide=True)
 	gb.configure_grid_options(rowHeight=37)  # set row height
 	gridOptions = gb.build()
 
@@ -196,7 +218,7 @@ if option == 'Cuneiform signs':
 				with c1:
 					st.write('<table border=0 width="100%"><tr><td width="40%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>End of 3<sup>rd</sup> millennia form:</b><br>– font <i>CuneiformComposite.ttf</i></td><td width="60%" style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "CuneiformComposite" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian monumental form:</b><br>– font <i>SantakkuM.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "SantakkuM" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Old Babylonian cursive form:</b><br>– font <i>Santakku.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Santakku" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Assurbanipal.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Assurbanipal" style="font-size: 35pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Neo-Assyrian form:</b><br>– font <i>Sinacherib.ttf</i></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><font face = "Sinacherib" style="font-size: 30pt" color = "#ffffab">', row['Sign1'], '</font></td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Values:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Values1'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>MesZL:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['MesZL'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>ABZ/Labat:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['ABZ/Labat'], '</td></tr><tr><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm"><b>Unicode codepoint and name:</b></td><td style="border-top: 0pt; border-left: 0pt; border-right: 0pt; padding-top: 0.25cm; padding-bottom: 0.25cm; padding-left: 0.45cm">', row['Codepoint'], '</td></tr></table>', unsafe_allow_html=True)
 				with c2:
-					st.write('<b><font style="font-size: 23px">Image(s)</font></b>', unsafe_allow_html=True)
+					st.write('<b><font style="font-size: 23px">Old Babylonian examples</font></b>', unsafe_allow_html=True)
 					path = './resources/signs' + '/' + str(row['Path'])
 
 					colNumber = st.slider('Column count:', 1, 13, 6, label_visibility='visible')
