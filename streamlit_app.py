@@ -62,7 +62,7 @@ def clearSearchForm():
 
 # Catalogue
 if tabs == 'Catalogue':
-	st.write('<b><font style="font-size: 2.7em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+	st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 	st.write('<b><font style="font-size: 25px">Search</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
 	data1 = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv', usecols=['name', 'altName', 'cer', 'lat', 'lon', 'writ', 'type', 'countr', 'ha', 'bibl', 'order'])
@@ -128,22 +128,6 @@ if tabs == 'Catalogue':
 	"""
 	)
 
-	# style of the 'Title' column
-	cellsytle_jscode1 = JsCode(
-		"""
-	function(params) {
-		if (params.data.name != 'xxx') {
-			return {
-				'color': '#ffffab',
-				'font-weight': 'bold',
-				'backgroundColor': '#0E1117',
-				'font-size':'1.3em',
-			}
-		}
-	};
-	"""
-	)
-
 	# style of the map
 	st.markdown("""
 		<style>
@@ -176,7 +160,7 @@ if tabs == 'Catalogue':
 	)
 	gb.configure_selection('', use_checkbox=True, groupSelectsChildren='Group checkbox select children')
 	gb.configure_column('order', headerName='ID', maxWidth=90, cellStyle=cellsytle_jscode)
-	gb.configure_column('name', headerName='Name', cellStyle=cellsytle_jscode1)
+	gb.configure_column('name', headerName='Name', cellStyle={'color': '#ffffab', 'font-weight': 'bold', 'backgroundColor': '#0E1117', 'font-size':'1.3em'})
 	gb.configure_column('altName', headerName='All names', cellStyle=cellsytle_jscode)
 	gb.configure_column('cer', headerName='c.', maxWidth=35, minWidth=25, cellStyle=cellsytle_jscode)
 	gb.configure_column('lat', headerName='Latitude', cellStyle=cellsytle_jscode)
@@ -264,7 +248,7 @@ if tabs == 'Catalogue':
 elif tabs == 'About':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.7em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 		st.header('About')
 		st.write(
 			"""
@@ -281,7 +265,7 @@ elif tabs == 'About':
 elif tabs == 'References':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.7em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 		st.header('References')
 		st.write(
 	"""
@@ -382,11 +366,11 @@ elif tabs == 'References':
 elif tabs == 'Downloads':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.7em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 		st.header('Downloads')
 		timestr = time.strftime('%Y-%m-%d_%H-%M-%S')
 		st.write('<font style="font-size: 1.3em"><br></font>', unsafe_allow_html=True)
-		col1, col2, col3, col4 = st.columns([11, 10, 9, 7], gap='large')
+		col1, col2, col3, col4 = st.columns([11.1, 10, 9, 7], gap='small')
 		with col1:
 			st.write('<font style="font-size: 1.3em"><b><font style="color: #ffffab">Current list of toponyms</font></b> (.csv file)</font>', unsafe_allow_html=True)
 		with col2:
@@ -405,6 +389,11 @@ elif tabs == 'Downloads':
 					data=file,
 					file_name=timestr + '_CNATv2-Toponyms.csv', use_container_width=True,
 					)
+		colum1, colum2 = st.columns([11, 26], gap='small')
+		with colum1:
+			st.write('<font style="font-size: 1.3em; color: #ffffab"><b>Catalogue app<b></font>', unsafe_allow_html=True)
+		with colum2:
+			st.write('<font style="font-size: 1.3em">available at <br>https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2</font>', unsafe_allow_html=True)
 
 # add footer
 footer = """<style>
