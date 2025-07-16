@@ -17,3 +17,4 @@ Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cn
 * base64
 
 ## Deployment
+https://cnat-2.streamlit.app/
