@@ -1,2 +1,5 @@
 streamlit-aggrid==1.0.5
 streamlit==1.41.1
+streamlit-on-Hover-tabs
+streamlit-folium
+folium
