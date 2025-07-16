@@ -10,7 +10,6 @@ Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cn
 * folium
 * csv
 * pandas
-* geopandas
 * time
 * datetime
 * os
