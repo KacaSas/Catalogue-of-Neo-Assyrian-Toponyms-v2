@@ -15,7 +15,7 @@ from os import listdir
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
-# load cuneiform fonts
+# load cuneiform fonts 
 def load_font_css(font_name, font_path):
 	with open(font_path, "rb") as f:
 		font_data = f.read()
