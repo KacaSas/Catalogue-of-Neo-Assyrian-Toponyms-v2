@@ -395,31 +395,3 @@ elif tabs == 'Downloads':
 		with colum2:
 			st.write('<font style="font-size: 1.3em">available at <br>https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2</font>', unsafe_allow_html=True)
 
-# add footer
-footer = """<style>
-background-color: transparent;
-text-decoration: underline;
-}
-
-a:hover, a:active {
-color: red;
-background-color: transparent;
-text-decoration: underline;
-}
-
-.footer {
-position: fixed;
-left: 0;
-bottom: 0;
-width: 99%;
-background-color: transparent;
-color: #9F9FAA;
-text-align: right;
-}
-</style>
-<div class="footer">
-<p>Kateřina Šašková 2025–</p>
-</div>
-"""
-st.markdown(footer, unsafe_allow_html=True)
-
