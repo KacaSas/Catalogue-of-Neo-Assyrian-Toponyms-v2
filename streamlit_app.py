@@ -1,13 +1,13 @@
 import csv
 import folium
 import pandas as pd
-import streamlit as st  # pip install streamlit==1.41.1
-from st_aggrid import GridOptionsBuilder, AgGrid, JsCode # pip install streamlit-aggrid==1.0.5
-import base64 # because of cuneiform fonts
+import streamlit as st
+from st_aggrid import GridOptionsBuilder, AgGrid, JsCode
+import base64
 from folium import plugins
 from folium.plugins import Draw, MeasureControl, Search
-from streamlit_folium import st_folium # streamlit-folium
-from st_on_hover_tabs import on_hover_tabs # pip install streamlit-on-Hover-tabs
+from streamlit_folium import st_folium
+from st_on_hover_tabs import on_hover_tabs
 import time
 import datetime
 import os
@@ -15,7 +15,7 @@ from os import listdir
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
-# load cuneiform fonts 
+# load cuneiform fonts
 def load_font_css(font_name, font_path):
 	with open(font_path, "rb") as f:
 		font_data = f.read()
