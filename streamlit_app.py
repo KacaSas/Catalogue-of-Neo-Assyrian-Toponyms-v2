@@ -12,6 +12,7 @@ import time
 import datetime
 import os
 from os import listdir
+import plotly.express as px
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -32,10 +33,10 @@ fonts_css += load_font_css("Assurbanipal", "resources/fonts/Assurbanipal.ttf")
 
 st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert fonts into the app page
 
-# Sidebar tabs
+# sidebar tabs
 st.markdown('<style>' + open('resources/tabStyle/style.css').read() + '</style>', unsafe_allow_html=True)
 with st.sidebar:
-	tabs = on_hover_tabs(tabName=['Catalogue', 'About', 'References', 'Downloads'], iconName=['search', 'home', 'menu_book', 'download'],
+	tabs = on_hover_tabs(tabName=['Catalogue', 'About', 'References', 'Statistics', 'Downloads'], iconName=['search', 'home', 'menu_book', 'bar_chart', 'download'],
                              styles = {'navtab': {'background-color':'#262730',
                                                   'color': '#ababab',
                                                   'font-size': '19px',
@@ -60,7 +61,6 @@ def clearSearchForm():
 	st.session_state['44481559196443337725'] = ''
 	st.session_state['4448155919644333772558'] = ''
 
-# Catalogue
 if tabs == 'Catalogue':
 	st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 	st.write('<b><font style="font-size: 25px">Search</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
@@ -107,7 +107,7 @@ if tabs == 'Catalogue':
 	else:
 		data = foundCountry
 
-	# style of the columns
+	# style of columns
 	cellsytle_jscode = JsCode(
 		"""
 	function(params) {
@@ -181,7 +181,7 @@ if tabs == 'Catalogue':
 			DataReturnMode='AS_INPUT',
 			GridUpdateMode='MODEL_CHANGED',
 			fit_columns_on_grid_load=True,
-			theme='streamlit',  # theme: streamlit, light, dark/balham, blue, fresh, material
+			theme='streamlit',  # themes: streamlit, light, dark/balham, blue, fresh, material
 			enable_enterprise_modules=False,
 			height=300, 
 			width='100%',
@@ -244,7 +244,6 @@ if tabs == 'Catalogue':
 		else:
 			st.write('')
 
-# About
 elif tabs == 'About':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
@@ -260,8 +259,6 @@ elif tabs == 'About':
 
 			Please note that the catalogue is still under development and some information may be inaccurate and/or incomplete.</font>""", unsafe_allow_html=True)
 	
-# References
-#if option == 'References':
 elif tabs == 'References':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
@@ -362,6 +359,47 @@ elif tabs == 'References':
 
 	➣ *Streamlit documentation*. https://docs.streamlit.io/.
 	</font>""", unsafe_allow_html=True)
+
+elif tabs == 'Statistics':
+	st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+	st.header('Statistics')
+	localitiesCSV = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv')
+	localities = pd.DataFrame(localitiesCSV)
+	localities.rename(columns=({'order': 'ID', 'name': 'Name', 'altName': 'All names', 'cer': 'Certainty', 'writ': 'Written forms', 'type': 'Type', 'countr': 'Country or territory', 'ha': 'Helsinki Atlas map and grid', 'bibl': 'Bibliography'}), inplace=True)
+	localitiesCoord = localities[localities['lat'] != '–']
+
+	with st.expander('', expanded=True):
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">All localities </font></b><br>Count: ', localities['ID'].count(), unsafe_allow_html=True)
+		st.dataframe(localities, use_container_width=True, hide_index=True)
+
+	with st.expander('', expanded=True):
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Localities with coordinates </font></b><br>Count: ', localitiesCoord['ID'].count(), unsafe_allow_html=True)
+		st.dataframe(localitiesCoord, use_container_width=True, hide_index=True)
+
+	with st.expander('', expanded=True):
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Geographical distribution</font></b>', unsafe_allow_html=True)
+		localitiesLatLon = pd.DataFrame(localitiesCoord, columns=['lat', 'lon'])
+		localitiesLatLon['lat'] = localitiesLatLon['lat'].astype(float)
+		localitiesLatLon['lon'] = localitiesLatLon['lon'].astype(float)
+		st.map(localitiesLatLon, use_container_width=True)
+
+	with st.expander('', expanded=True):
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Some other statistics</font></b>', unsafe_allow_html=True)
+		localities.rename(columns=({'lat': 'Latitude', 'lon': 'Longitude'}), inplace=True)
+		c1, c2 = st.columns([3, 3], gap='small')
+		with c1:
+			plotBy = st.selectbox('Plot by', ('Certainty', 'Type', 'Country or territory', 'Helsinki Atlas map and grid'), key='plotBy')
+		with c2:
+			pieHeigth1 = st.slider('Chart size', 300, 1500, 750, key='pieHeigth1')
+
+		localities7 = pd.DataFrame(localities[plotBy].value_counts()).head(50)
+		localities9 = localities7
+		localities9.columns=['Count']
+		localities9[plotBy] = localities9.index
+
+		figCSV = px.pie(localities9, values=localities9.Count, names=plotBy, color_discrete_sequence=px.colors.sequential.Turbo, height=pieHeigth1)  # colors: https://plotly.com/python/builtin-colorscales/
+		figCSV.update_layout(legend=dict(font=dict(size = 17)))
+		st.plotly_chart(figCSV, theme=None, use_container_width=True)  # Streamlit theme used without theme=None
 
 elif tabs == 'Downloads':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
