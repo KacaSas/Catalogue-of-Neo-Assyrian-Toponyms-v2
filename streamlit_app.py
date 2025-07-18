@@ -9,6 +9,7 @@ from folium.plugins import Draw, MeasureControl, Search
 from streamlit_folium import st_folium
 from st_on_hover_tabs import on_hover_tabs
 import time
+import plotly.express as px
 import datetime
 import os
 from os import listdir
@@ -361,19 +362,59 @@ elif tabs == 'References':
 	</font>""", unsafe_allow_html=True)
 
 elif tabs == 'Statistics':
-	st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
-	st.header('Statistics')
+	st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">STATISTICS</font></b>', unsafe_allow_html=True)
+
+	newEditedDeleted = pd.read_csv('resources/data/000-newEditedDeleted.csv')
+	newEditedDeleted.sort_values('appended', ascending=False, inplace=True)
+	newEditedDeleted['appended'] = newEditedDeleted['appended'].str.replace('-(', ' (')
+	newEditedDeleted['appended'] = newEditedDeleted['appended'].str.replace(')', '):')
+
+	with st.expander('', expanded=True):
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Recent changes</font></b>', unsafe_allow_html=True)
+
+		def listRecentChanges(countX, rangeX):
+			x = countX
+			c1, c2, c3 = st.columns([8.7, 2.9, 10.3], gap='small')
+			with c1:
+				st.write('<b><font style="font-size: 1.1em">Date:</font></b>', unsafe_allow_html=True)
+			with c2:
+				st.write('<b><font style="font-size: 1.1em">State:</font></b>', unsafe_allow_html=True)
+			with c3:
+				st.write('<b><font style="font-size: 1.1em">Name and ID:</font></b>', unsafe_allow_html=True)
+
+			for entry in range(rangeX):
+				with c1:
+					st.write(x+1, '<font style="font-size: 1em">', newEditedDeleted['appended'].iloc[x], '</font>', unsafe_allow_html=True)
+				with c2:
+					if newEditedDeleted['state'].iloc[x] == 'edited':
+						st.write('<font style="font-size: 1em; color: #de7604">', newEditedDeleted['state'].iloc[x], '</font>', unsafe_allow_html=True)
+					elif newEditedDeleted['state'].iloc[x] == 'deleted':
+						st.write('<font style="font-size: 1em; color: #f51d0a">', newEditedDeleted['state'].iloc[x], '</font>', unsafe_allow_html=True)
+					else:
+						st.write('<font style="font-size: 1em; color: #02d12f">', newEditedDeleted['state'].iloc[x], '</font>', unsafe_allow_html=True)
+				with c3:
+					st.write('<b><font style="font-size: 1em; color: #ffffab">', newEditedDeleted['title'].iloc[x], '</font></b> <font style="font-size: 1em"> (ID: ', str(newEditedDeleted['order'].iloc[x]), ')</font>', unsafe_allow_html=True)
+				x = x+1
+
+		colum1, colum2, colum3, colum4, colum5 = st.columns([15, 0.3, 15, 0.3, 15], gap='small')
+		with colum1:
+			listRecentChanges(0, 20)
+		with colum3:
+			listRecentChanges(20, 20)
+		with colum5:
+			listRecentChanges(40, 20)
+
 	localitiesCSV = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv')
 	localities = pd.DataFrame(localitiesCSV)
 	localities.rename(columns=({'order': 'ID', 'name': 'Name', 'altName': 'All names', 'cer': 'Certainty', 'writ': 'Written forms', 'type': 'Type', 'countr': 'Country or territory', 'ha': 'Helsinki Atlas map and grid', 'bibl': 'Bibliography'}), inplace=True)
 	localitiesCoord = localities[localities['lat'] != '–']
 
 	with st.expander('', expanded=True):
-		st.write('<b><font style="font-size: 1.5em; color: #ffffab">All localities </font></b><br>Count: ', localities['ID'].count(), unsafe_allow_html=True)
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">All localities </font><br><font style="font-size: 1.1em">Count: ', localities['ID'].count(), '</font></b>', unsafe_allow_html=True)
 		st.dataframe(localities, use_container_width=True, hide_index=True)
 
 	with st.expander('', expanded=True):
-		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Localities with coordinates </font></b><br>Count: ', localitiesCoord['ID'].count(), unsafe_allow_html=True)
+		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Localities with coordinates </font><br><font style="font-size: 1.1em">Count: ', localitiesCoord['ID'].count(), '</font></b>', unsafe_allow_html=True)
 		st.dataframe(localitiesCoord, use_container_width=True, hide_index=True)
 
 	with st.expander('', expanded=True):
@@ -388,7 +429,7 @@ elif tabs == 'Statistics':
 		localities.rename(columns=({'lat': 'Latitude', 'lon': 'Longitude'}), inplace=True)
 		c1, c2 = st.columns([3, 3], gap='small')
 		with c1:
-			plotBy = st.selectbox('Plot by', ('Certainty', 'Type', 'Country or territory', 'Helsinki Atlas map and grid'), key='plotBy')
+			plotBy = st.selectbox('Plot by', ('Type', 'Country or territory', 'Certainty', 'Helsinki Atlas map and grid'), key='plotBy')
 		with c2:
 			pieHeigth1 = st.slider('Chart size', 300, 1500, 750, key='pieHeigth1')
 
