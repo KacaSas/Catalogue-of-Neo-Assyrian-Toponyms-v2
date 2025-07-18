@@ -239,6 +239,8 @@ if tabs == 'Catalogue':
 						folium.LayerControl(position='bottomleft').add_to(map4)
 						st_data = st_folium(map4, height=810, use_container_width=True)
 						st.markdown('<font style="color:#FF4B4B"><b>Coordinates unknown or unavailable.</b></font>', unsafe_allow_html=True)
+		else:
+			st.write('')
 
 elif tabs == 'About':
 	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
