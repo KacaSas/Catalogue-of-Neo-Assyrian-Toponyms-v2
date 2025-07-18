@@ -10,10 +10,6 @@ from streamlit_folium import st_folium
 from st_on_hover_tabs import on_hover_tabs
 import time
 import plotly.express as px
-import datetime
-import os
-from os import listdir
-import plotly.express as px
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -270,95 +266,95 @@ elif tabs == 'References':
 	### **Maps and localities**
 	<font style="font-size: 1.3em">
 
-	➣ Åhlfeldt, Johan, 2020: *Digital Atlas of the Roman Empire (DARE)*. http://imperium.ahlfeldt.se/.
+	‣ Åhlfeldt, Johan, 2020: *Digital Atlas of the Roman Empire (DARE)*. http://imperium.ahlfeldt.se/.
 
-	➣ Anastasio, S., Lebeau, M., Sauvage, M., 2004: *Atlas of Preclassical Upper Mesopotamia*. Subartu XIII. Turnhout: Brepols Publishers.
+	‣ Anastasio, S., Lebeau, M., Sauvage, M., 2004: *Atlas of Preclassical Upper Mesopotamia*. Subartu XIII. Turnhout: Brepols Publishers.
 
-	➣ *Archival Texts of the Assyrian Empire (ATAE)*. http://oracc.museum.upenn.edu/atae/.
+	‣ *Archival Texts of the Assyrian Empire (ATAE)*. http://oracc.museum.upenn.edu/atae/.
 	
-	➣ Bagg, A. M., 2007: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Die Levante*. RGTC 7/1. Wiesbaden: Dr. Ludwig Reichert Verlag.
+	‣ Bagg, A. M., 2007: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Die Levante*. RGTC 7/1. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
-	➣ Bagg, A. M., 2017: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Zentralassyrien und benachbarte Gebiete, Ägypten und die arabische Halbinsel*. RGTC 7/2. Wiesbaden: Dr. Ludwig Reichert Verlag.
+	‣ Bagg, A. M., 2017: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Zentralassyrien und benachbarte Gebiete, Ägypten und die arabische Halbinsel*. RGTC 7/2. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
-	➣ Bagg, A. M., 2020: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Babylonien, Urarṭu und die östlichen Gebiete*. RGTC 7/3. Wiesbaden: Dr. Ludwig Reichert Verlag.
+	‣ Bagg, A. M., 2020: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Babylonien, Urarṭu und die östlichen Gebiete*. RGTC 7/3. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
-	➣ Cancik-Kirschbaum, E., Hess, Ch., 2017: *Toponyme der mittelassyrischen Texte: Der Westen des mittelassyrischen Reiches. Obermesopotamien im 2. Jt. v.Chr*. MTT I/2. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4439 (https://books.openedition.org/cdf/4439).
+	‣ Cancik-Kirschbaum, E., Hess, Ch., 2017: *Toponyme der mittelassyrischen Texte: Der Westen des mittelassyrischen Reiches. Obermesopotamien im 2. Jt. v.Chr*. MTT I/2. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4439 (https://books.openedition.org/cdf/4439).
 
-	➣ *CDLI: Proveniences*. https://cdli.mpiwg-berlin.mpg.de/proveniences/.
+	‣ *CDLI: Proveniences*. https://cdli.mpiwg-berlin.mpg.de/proveniences/.
 
-	➣ *The Digital Archaeological Atlas of the Holy Land (DAAHL)*. https://daahl.ucsd.edu/DAAHL/Home.php.
+	‣ *The Digital Archaeological Atlas of the Holy Land (DAAHL)*. https://daahl.ucsd.edu/DAAHL/Home.php.
 
-	➣ Fink, Ch., 2017: *Fundorte und Karten. Obermesopotamien im 2. Jt. v.Chr.* MTT I/3. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4487 (https://books.openedition.org/cdf/4487).
+	‣ Fink, Ch., 2017: *Fundorte und Karten. Obermesopotamien im 2. Jt. v.Chr.* MTT I/3. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4487 (https://books.openedition.org/cdf/4487).
 
-	➣ *GeoNames*. https://www.geonames.org/.
+	‣ *GeoNames*. https://www.geonames.org/.
 
-	➣ de Graauw, A., 2022: *Ancient Ports and Harbours, The Catalogue*. 8th ed. Grenoble. pdf downloadable from A. de Graauw, *Ancient Ports – Ports antiques*, website: http://www.ancientportsantiques.com/docs-pdf/, catalogue: https://www.ancientportsantiques.com/the-catalogue/.
+	‣ de Graauw, A., 2022: *Ancient Ports and Harbours, The Catalogue*. 8th ed. Grenoble. pdf downloadable from A. de Graauw, *Ancient Ports – Ports antiques*, website: http://www.ancientportsantiques.com/docs-pdf/, catalogue: https://www.ancientportsantiques.com/the-catalogue/.
 
-	➣ Holappa, Maija: *Helsinki Atlas Sites + CIGS*. https://www.google.com/maps/d/u/0/viewer?mid=1XWivnuuHzEfy0BJ6nMOdRbkLojLzahA&ll.
+	‣ Holappa, Maija: *Helsinki Atlas Sites + CIGS*. https://www.google.com/maps/d/u/0/viewer?mid=1XWivnuuHzEfy0BJ6nMOdRbkLojLzahA&ll.
 
-	➣ *OpenStreetMap*. https://www.openstreetmap.org/.
+	‣ *OpenStreetMap*. https://www.openstreetmap.org/.
 
-	➣ Parpola, S., 1970: *Neo-Assyrian Toponyms*. Neukirchen-Vluyn: Neukirchener Verlag – Verlag Butzon & Bercker Kevelaer.
+	‣ Parpola, S., 1970: *Neo-Assyrian Toponyms*. Neukirchen-Vluyn: Neukirchener Verlag – Verlag Butzon & Bercker Kevelaer.
 
-	➣ Parpola, S., Porter, M. (eds.), 2001: *The Helsinki Atlas of the Near East in the Neo-Assyrian Period*. Helsinki: The Neo-Assyrian Text Corpus Project – The Casco Bay Assyriological Institute.
+	‣ Parpola, S., Porter, M. (eds.), 2001: *The Helsinki Atlas of the Near East in the Neo-Assyrian Period*. Helsinki: The Neo-Assyrian Text Corpus Project – The Casco Bay Assyriological Institute.
 
-	➣ Pedersén, O. *ANE Placemarks for Google Earth*. https://www.lingfil.uu.se/research/assyriology/earth/.
+	‣ Pedersén, O. *ANE Placemarks for Google Earth*. https://www.lingfil.uu.se/research/assyriology/earth/.
 
-	➣ Pedersén, O. *Water Placemarks for Google Earth*. https://www.uu.se/en/department/linguistics-and-philology/research/proj/geographic-data-near-east.
+	‣ Pedersén, O. *Water Placemarks for Google Earth*. https://www.uu.se/en/department/linguistics-and-philology/research/proj/geographic-data-near-east.
 
-	➣ *Pleiades*. https://pleiades.stoa.org/.
+	‣ *Pleiades*. https://pleiades.stoa.org/.
 
-	➣ Postgate, J. N., 1995: Assyria: The Home Provinces. In M. Liverani (ed.), *Neo-Assyrian Geography*. Roma: Università di Roma, 1–17.
+	‣ Postgate, J. N., 1995: Assyria: The Home Provinces. In M. Liverani (ed.), *Neo-Assyrian Geography*. Roma: Università di Roma, 1–17.
 
-	➣ Radner, K., 2006: *Provinz. C. Assyrien*. RlA 11, 42–68.
+	‣ Radner, K., 2006: *Provinz. C. Assyrien*. RlA 11, 42–68.
 
-	➣ Rattenborg, R., Johansson, C., Nett, S., Smidt, G. R., Andersson, J. 2021: *Cuneiform Inscriptions Geographical Site Index (CIGS)*. DOI: https://doi.org/10.5281/zenodo.5217600 (https://zenodo.org/record/5217600).
+	‣ Rattenborg, R., Johansson, C., Nett, S., Smidt, G. R., Andersson, J. 2021: *Cuneiform Inscriptions Geographical Site Index (CIGS)*. DOI: https://doi.org/10.5281/zenodo.5217600 (https://zenodo.org/record/5217600).
 
-	➣ *The Royal Inscriptions of Assyria online (RIAo) Project*. http://oracc.museum.upenn.edu/riao/.
+	‣ *The Royal Inscriptions of Assyria online (RIAo) Project*. http://oracc.museum.upenn.edu/riao/.
 
-	➣ *The Royal Inscriptions of the Neo-Assyrian Period (RINAP)*. http://oracc.museum.upenn.edu/rinap/.
+	‣ *The Royal Inscriptions of the Neo-Assyrian Period (RINAP)*. http://oracc.museum.upenn.edu/rinap/.
 
-	➣ *State Archives of Assyria Online (SAAo)*. http://oracc.museum.upenn.edu/saao/.
+	‣ *State Archives of Assyria Online (SAAo)*. http://oracc.museum.upenn.edu/saao/.
 
-	➣ Talbert, Richard J. A. (ed.), 2000: *Barrington Atlas of the Greek and Roman World*. Princeton: Princeton University Press.
+	‣ Talbert, Richard J. A. (ed.), 2000: *Barrington Atlas of the Greek and Roman World*. Princeton: Princeton University Press.
 
-	➣ *Textual Sources of the Assyrian Empire (TSAE)*. https://oracc.museum.upenn.edu/tsae/index.html.
+	‣ *Textual Sources of the Assyrian Empire (TSAE)*. https://oracc.museum.upenn.edu/tsae/index.html.
 
-	➣ Titolo, A., Palmisano, A., 2025: *UnitoAssyrianGovernance/villages-to-empire-dataset: Paper submission version (1.0)*. DOI: https://doi.org/10.5281/zenodo.15111789.
+	‣ Titolo, A., Palmisano, A., 2025: *UnitoAssyrianGovernance/villages-to-empire-dataset: Paper submission version (1.0)*. DOI: https://doi.org/10.5281/zenodo.15111789.
 
-	➣ *Vici.org*. https://vici.org/.
+	‣ *Vici.org*. https://vici.org/.
 
-	➣ Ziegler, N., Langlois, A.-I., 2017: *Les toponymes paléo-babyloniens de la Haute-Mésopotamie. La Haute-Mésopotamie au IIe millénaire av. J.-C.* MTT I/1. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4393 (https://books.openedition.org/cdf/4393).
+	‣ Ziegler, N., Langlois, A.-I., 2017: *Les toponymes paléo-babyloniens de la Haute-Mésopotamie. La Haute-Mésopotamie au IIe millénaire av. J.-C.* MTT I/1. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4393 (https://books.openedition.org/cdf/4393).
 
 	### <br>**Cuneiform fonts**
 
-	➣ *Assurbanipal.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *Assurbanipal.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
 
-	➣ *CuneiformComposite.ttf* created by Steve Tinney, available at The Open Richly Annotated Cuneiform Corpus website. http://oracc.museum.upenn.edu/doc/help/visitingoracc/fonts/.
+	‣ *CuneiformComposite.ttf* created by Steve Tinney, available at The Open Richly Annotated Cuneiform Corpus website. http://oracc.museum.upenn.edu/doc/help/visitingoracc/fonts/.
 
-	➣ *Old Babylonian Freie* created by Corvin R. Ziegeler, available at https://refubium.fu-berlin.de/handle/fub188/45271 and https://github.com/crzfub/OB-Freie.
+	‣ *Old Babylonian Freie* created by Corvin R. Ziegeler, available at https://refubium.fu-berlin.de/handle/fub188/45271 and https://github.com/crzfub/OB-Freie.
 
-	➣ *Santakku.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *Santakku.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
 
-	➣ *SantakkuM.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *SantakkuM.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
 
-	➣ *Sinacherib.ttf* created by Kateřina Šašková, available at http://home.zcu.cz/~ksaskova/.
+	‣ *Sinacherib.ttf* created by Kateřina Šašková, available at http://home.zcu.cz/~ksaskova/.
 
 	### <br>**Guides and tools**
 
-	➣ Crymble, A., 2015: *Using Gazetteers to Extract Sets of Keywords from Free-Flowing Texts*. Programming Historian 4. https://programminghistorian.org/en/lessons/extracting-keywords.
+	‣ Crymble, A., 2015: *Using Gazetteers to Extract Sets of Keywords from Free-Flowing Texts*. Programming Historian 4. https://programminghistorian.org/en/lessons/extracting-keywords.
 
-	➣ *Folium documentation*. https://python-visualization.github.io/folium/.
+	‣ *Folium documentation*. https://python-visualization.github.io/folium/.
 	
-	➣ *Geojson.io*. http://geojson.io.
+	‣ *Geojson.io*. http://geojson.io.
 
-	➣ *Google Maps*. https://www.google.com/maps.
+	‣ *Google Maps*. https://www.google.com/maps.
 
-	➣ *QGIS. A Free and Open Source Geographic Information System*. https://www.qgis.org/en/site/.
+	‣ *QGIS. A Free and Open Source Geographic Information System*. https://www.qgis.org/en/site/.
 
-	➣ Sharma, A., 2020. *Your Guide to Getting Started with Geospatial Analysis using Folium (with multiple case studies)*. https://www.analyticsvidhya.com/blog/2020/06/guide-geospatial-analysis-folium-python/.
+	‣ Sharma, A., 2020. *Your Guide to Getting Started with Geospatial Analysis using Folium (with multiple case studies)*. https://www.analyticsvidhya.com/blog/2020/06/guide-geospatial-analysis-folium-python/.
 
-	➣ *Streamlit documentation*. https://docs.streamlit.io/.
+	‣ *Streamlit documentation*. https://docs.streamlit.io/.
 	</font>""", unsafe_allow_html=True)
 
 elif tabs == 'Statistics':
