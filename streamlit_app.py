@@ -443,24 +443,18 @@ elif tabs == 'Statistics':
 		st.plotly_chart(figCSV, theme=None, use_container_width=True)  # Streamlit theme used without theme=None
 
 elif tabs == 'Downloads':
-	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
+	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
 	with c2:
 		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 		st.header('Downloads')
 		timestr = time.strftime('%Y-%m-%d_%H-%M-%S')
 		st.write('<font style="font-size: 1.3em"><br></font>', unsafe_allow_html=True)
-		col1, col2, col3, col4 = st.columns([11.1, 10, 9, 7], gap='small')
+
+		col1, col2, col3, col4 = st.columns([11, 9, 11, 16], gap='small')
 		with col1:
-			st.write('<font style="font-size: 1.3em"><b><font style="color: #ffffab">Current list of toponyms</font></b> (.csv file)</font>', unsafe_allow_html=True)
+			st.write('<font style="font-size: 1.5em; color: #ffffab"><b>Current list of toponyms</b></font>', unsafe_allow_html=True)
 		with col2:
-			downloadPath = 'resources/data/'
-			def ts_to_dt(ts):
-				return datetime.datetime.fromtimestamp(ts)
-			dateDownFiles = []
-			for item in os.scandir(downloadPath):
-				dateDownFiles.append([item.name, item.stat().st_size, ts_to_dt(item.stat().st_ctime)])
-			dateDownloadFiles = pd.DataFrame(dateDownFiles)
-			st.write('<font style="font-size: 1.3em">changed ', pd.to_datetime(dateDownloadFiles[2].values[0]).strftime('%Y-%m-%d %H:%M:%S'), '</font>', unsafe_allow_html=True)
+			st.write('<font style="font-size: 1.5em">.csv file</font>', unsafe_allow_html=True)
 		with col3:
 			with open('resources/data/AssyrianProject-AllNoDupl.csv', 'rb') as file:
 				st.download_button(
@@ -468,9 +462,10 @@ elif tabs == 'Downloads':
 					data=file,
 					file_name=timestr + '_CNATv2-Toponyms.csv', use_container_width=True,
 					)
-		colum1, colum2 = st.columns([11, 26], gap='small')
-		with colum1:
-			st.write('<font style="font-size: 1.3em; color: #ffffab"><b>Catalogue app<b></font>', unsafe_allow_html=True)
-		with colum2:
-			st.write('<font style="font-size: 1.3em">available at <br>https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2</font>', unsafe_allow_html=True)
+		with col1:
+			st.write('<font style="font-size: 1.5em; color: #ffffab"><b>Catalogue app</b></font>', unsafe_allow_html=True)
+		with col2:
+			st.write('<font style="font-size: 1.5em">available at GitHub</font>', unsafe_allow_html=True)
+		with col3:
+			st.link_button('Visit', 'https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2', use_container_width=True)
 
