@@ -10,6 +10,7 @@ from streamlit_folium import st_folium
 from st_on_hover_tabs import on_hover_tabs
 import time
 import plotly.express as px
+from PIL import Image
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -25,31 +26,34 @@ def load_font_css(font_name, font_path):
 		}}
 		"""
 fonts_css = ""
-fonts_css += load_font_css("Sinacherib", "resources/fonts/Sinacherib.ttf")
+fonts_css += load_font_css("Linux Libertine Display", "resources/fonts/LinLibertine_DRah.ttf")
 fonts_css += load_font_css("Assurbanipal", "resources/fonts/Assurbanipal.ttf")
 
 st.markdown(f"<style>{fonts_css}</style>", unsafe_allow_html=True)  # insert fonts into the app page
 
+image = Image.open('resources/images/CNAT3.png')
+st.sidebar.image(image)
+st.sidebar.write('<b><font style="font-size: 1.3em"><br><br></font></b>', unsafe_allow_html=True)
+
 # sidebar tabs
-st.markdown('<style>' + open('resources/tabStyle/style.css').read() + '</style>', unsafe_allow_html=True)
+#st.markdown('<style>' + open('resources/tabStyle/style.css').read() + '</style>', unsafe_allow_html=True)
 with st.sidebar:
 	tabs = on_hover_tabs(tabName=['Catalogue', 'About', 'References', 'Statistics', 'Downloads'], iconName=['search', 'home', 'menu_book', 'bar_chart', 'download'],
-                             styles = {'navtab': {'background-color':'#262730',
-                                                  'color': '#ababab',
-                                                  'font-size': '19px',
-                                                  'transition': '.3s',
-                                                  'white-space': 'nowrap',
-                                                  'text-transform': 'uppercase'},
-                                       'tabStyle': {':hover :hover': {'color': 'red',
-                                                                      'cursor': 'pointer'}},
-                                       'tabStyle' : {'list-style-type': 'none',
-                                                     'margin-bottom': '30px',
-                                                     'padding-left': '20px'},
-                                       'iconStyle':{'position':'fixed',
-                                                    'left':'7.5px',
-                                                    'text-align': 'left'},
-                                       },
-                             default_choice=0, key="1")
+		styles = {'navtab': {'background-color':'#262730',
+			'color': '#ababab',
+			'font-size': '17px',
+			'transition': '.3s',
+			'white-space': 'nowrap',
+			'text-transform': 'uppercase'},
+		'tabStyle': {':hover :hover': {'color': 'red', 'cursor': 'pointer'}},
+		'tabStyle' : {'list-style-type': 'none',
+			'margin-bottom': '30px',
+			'padding-left': '5px'},
+		'iconStyle':{'position':'fixed',
+			'left':'5px',
+			'text-align': 'left'},
+		},
+		default_choice=0, key="1")
 
 def clearSearchForm():
 	st.session_state['44481919633371111725'] = ''
@@ -59,7 +63,7 @@ def clearSearchForm():
 	st.session_state['4448155919644333772558'] = ''
 
 if tabs == 'Catalogue':
-	st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
+	st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">CATALOGUE</font></b>', unsafe_allow_html=True)
 	st.write('<b><font style="font-size: 25px">Search</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
 	data1 = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv', usecols=['name', 'altName', 'cer', 'lat', 'lon', 'writ', 'type', 'countr', 'ha', 'bibl', 'order'])
@@ -239,8 +243,8 @@ if tabs == 'Catalogue':
 elif tabs == 'About':
 	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
-		st.header('About')
+		st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">ABOUT</font></b>', unsafe_allow_html=True)
+		st.write('<br>', unsafe_allow_html=True)
 		st.write(
 			"""
 			<font style="font-size: 1.3em">The <i>Catalogue of Neo-Assyrian Toponyms 2</i> provides another interface for data from my <a href="https://cnat.zcu.cz/catalog" target="_blank">Catalog of Neo-Assyrian Toponyms</a>. The older interface (although helpful and pretty) was created and provided “as is” and is quite complex, so I also need a less elaborate and more flexible solution for some purposes now. The data is (and will be) the same in both catalogues.
@@ -252,10 +256,9 @@ elif tabs == 'About':
 			Please note that the catalogue is still under development and some information may be inaccurate and/or incomplete. For an overview of recent changes, see the <i>Statistics</i> section.</font>""", unsafe_allow_html=True)
 
 elif tabs == 'References':
-	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
+	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
-		st.header('References')
+		st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">REFERENCES</font></b>', unsafe_allow_html=True)
 		st.write(
 	"""
 	### **Maps and localities**
@@ -436,8 +439,7 @@ elif tabs == 'Statistics':
 elif tabs == 'Downloads':
 	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
 	with c2:
-		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
-		st.header('Downloads')
+		st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">DOWNLOADS</font></b>', unsafe_allow_html=True)
 		timestr = time.strftime('%Y-%m-%d_%H-%M-%S')
 		st.write('<font style="font-size: 1.3em"><br></font>', unsafe_allow_html=True)
 
