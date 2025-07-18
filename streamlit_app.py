@@ -469,3 +469,30 @@ elif tabs == 'Downloads':
 		with col3:
 			st.link_button('Visit', 'https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2', use_container_width=True)
 
+# adding footer
+footer = """<style>
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:hover, a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
+
+.footer {
+position: fixed;
+left: 0.1;
+bottom: 0;
+width: 99%;
+background-color: transparent;
+color: #575656;
+text-align: left;
+}
+</style>
+<div class="footer">
+<p>KacaSas 2025</p>
+</div>
+"""
+st.sidebar.markdown(footer, unsafe_allow_html=True)
