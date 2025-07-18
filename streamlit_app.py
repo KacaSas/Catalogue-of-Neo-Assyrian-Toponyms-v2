@@ -237,20 +237,20 @@ if tabs == 'Catalogue':
 						st.markdown('<font style="color:#FF4B4B"><b>Coordinates unknown or unavailable.</b></font>', unsafe_allow_html=True)
 
 elif tabs == 'About':
-	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
+	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
 	with c2:
 		st.write('<b><font style="font-size: 2.5em">Catalogue of Neo-Assyrian Toponyms 2</font></b>', unsafe_allow_html=True)
 		st.header('About')
 		st.write(
 			"""
-			<font style="font-size: 1.3em">This project provides another interface for data from my <a href="https://cnat.zcu.cz/catalog" target="_blank">Catalog of Neo-Assyrian Toponyms</a>. The older interface (although helpful and pretty) was created and provided “as is” and is quite complex, so I also need a less elaborate and more flexible solution for some purposes now. The data is (and will be) the same in both catalogues.
+			<font style="font-size: 1.3em">The <i>Catalogue of Neo-Assyrian Toponyms 2</i> provides another interface for data from my <a href="https://cnat.zcu.cz/catalog" target="_blank">Catalog of Neo-Assyrian Toponyms</a>. The older interface (although helpful and pretty) was created and provided “as is” and is quite complex, so I also need a less elaborate and more flexible solution for some purposes now. The data is (and will be) the same in both catalogues.
 
-			The <i>Catalogue of Neo-Assyrian Toponyms 2</i> primarily collects ancient Near Eastern sites known from Assyrian texts dated to the 1<sup>st</sup> half of the 1<sup>st</sup> millennium BCE; however, some notable sites from other periods likewise appear in the collection. <a href="http://home.zcu.cz/~ksaskova/map/AncientNearEast.html" target="_blank">The map of the ancient Near East: Tukultī-Ninurta II 885 BCE</a> shows toponyms with known coordinates from this catalogue.
+			This project primarily collects information on ancient Near Eastern sites known from Assyrian texts dated to the 1<sup>st</sup> half of the 1<sup>st</sup> millennium BCE, i.e., to the Neo-Assyrian period. However, some notable sites from other periods also appear in the collection. <a href="http://home.zcu.cz/~ksaskova/map/AncientNearEast.html" target="_blank">The map of the ancient Near East: Tukultī-Ninurta II 885 BCE</a> shows toponyms with known coordinates from this catalogue.
 
 			Data on particular locations is collected and processed by <a href="https://zcu.academia.edu/Kate%C5%99ina%C5%A0a%C5%A1kov%C3%A1" target="_blank">Kateřina Šašková</a> with contributions from Christopher W. Jones, Nathan Nuulimba and Maija Holappa. See also the <i>References</i> section.
 
-			Please note that the catalogue is still under development and some information may be inaccurate and/or incomplete.</font>""", unsafe_allow_html=True)
-	
+			Please note that the catalogue is still under development and some information may be inaccurate and/or incomplete. For an overview of recent changes, see the <i>Statistics</i> section.</font>""", unsafe_allow_html=True)
+
 elif tabs == 'References':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
 	with c2:
