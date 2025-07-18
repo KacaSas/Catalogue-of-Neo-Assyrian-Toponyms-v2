@@ -66,13 +66,13 @@ if tabs == 'Catalogue':
 
 	col1, col2, col3, col4, col5 = st.columns([9, 9, 9, 9, 9])
 	with col1:
-		locName = st.text_input('Name of the locality:', key=44481919633371111725, label_visibility='visible')
+		locName = st.text_input('Ancient or modern name:', key=44481919633371111725, label_visibility='visible')
 	with col2:
 		locWritten = st.text_input('Written form:', key=44481919633223337725, label_visibility='visible')
 	with col3:
 		locType = st.text_input('Type:', key=44481914496333772335578, label_visibility='visible')
 	with col4:
-		locCountry = st.text_input('Country:', key=44481559196443337725, label_visibility='visible')
+		locCountry = st.text_input('Country or territory:', key=44481559196443337725, label_visibility='visible')
 	with col5:
 		locBibliography = st.text_input('Bibliography:', key=4448155919644333772558, label_visibility='visible')
 
@@ -156,7 +156,7 @@ if tabs == 'Catalogue':
 		}
 	)
 	gb.configure_selection('', use_checkbox=True, groupSelectsChildren='Group checkbox select children')
-	gb.configure_column('order', headerName='ID', maxWidth=90, cellStyle=cellsytle_jscode)
+	gb.configure_column('order', headerName='ID', maxWidth=90, minWidth=85, cellStyle=cellsytle_jscode)
 	gb.configure_column('name', headerName='Name', cellStyle={'color': '#ffffab', 'font-weight': 'bold', 'backgroundColor': '#0E1117', 'font-size':'1.3em'})
 	gb.configure_column('altName', headerName='All names', cellStyle=cellsytle_jscode)
 	gb.configure_column('cer', headerName='c.', maxWidth=35, minWidth=25, cellStyle=cellsytle_jscode)
@@ -169,7 +169,7 @@ if tabs == 'Catalogue':
 	gb.configure_column('bibl', headerName='Bibliography', cellStyle=cellsytle_jscode)
 	gridOptions = gb.build()
 
-	with st.expander('Catalogue:', expanded=True):
+	with st.expander('', expanded=True):
 		st.write('Catalogue contains ', data1['name'].count(), 'toponyms, found', data['name'].count(), 'item(s).')
 		grid_response = AgGrid(
 			data,
@@ -189,7 +189,7 @@ if tabs == 'Catalogue':
 		selected = grid_response['selected_rows'] 
 		df1 = pd.DataFrame(selected)
 
-	with st.expander('Details:', expanded=True):
+	with st.expander('', expanded=True):
 		if len(df1.columns) != 0:
 			for index, row in df1.iterrows():
 				st.write('<font color="#0AA43A" size="6"><b>', row['name'], '</b></font>', unsafe_allow_html=True)
@@ -226,9 +226,6 @@ if tabs == 'Catalogue':
 						title_cancel='Full screen OFF',
 						force_separate_button=True).add_to(map4)
 
-					#Draw(export=True, position='topleft').add_to(map4)  # include draw tool
-					#map4.add_child(MeasureControl(position='topleft'))  # include measure control
-
 					df2 = df1[df1['lat'] != '–']
 					if len(df2) != 0:
 						folium.Marker([row['lat'], row['lon']], tooltip=tooltip, icon=folium.Icon(color='red', icon='none')).add_to(map4)
@@ -238,8 +235,6 @@ if tabs == 'Catalogue':
 						folium.LayerControl(position='bottomleft').add_to(map4)
 						st_data = st_folium(map4, height=810, use_container_width=True)
 						st.markdown('<font style="color:#FF4B4B"><b>Coordinates unknown or unavailable.</b></font>', unsafe_allow_html=True)
-		else:
-			st.write('')
 
 elif tabs == 'About':
 	c1, c2, c3 = st.columns([3, 17, 3], gap='small')
