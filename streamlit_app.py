@@ -11,6 +11,7 @@ from st_on_hover_tabs import on_hover_tabs
 import time
 import plotly.express as px
 from PIL import Image
+import unicodedata
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -62,11 +63,33 @@ def clearSearchForm():
 	st.session_state['44481559196443337725'] = ''
 	st.session_state['4448155919644333772558'] = ''
 
+def customAlphabetSort(sortedDF, sortedColumn):
+	customAlphabet = list(' –-0123456789ʾ’ʿ‘`aāâáàäbcçdḍeēêéèëfgğǧhḫḥiīîíìıïjklmnoōôóöpqrřsṣşštṭţuūûúùüvwxyzAĀÂÁÀÄBCÇDEĒÊÉÈËFGĞHḪḤIĪÎÍÌİÏJKLMNOŌÔÓÖPQRŘSṢŞŠTṬŢUŪÛÚÙÜVWXYZ!"#$%_()*+,./:;<=>?@[\]^&{|}~')
+	charOrder = {char: i for i, char in enumerate(customAlphabet)}
+	baseVowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+	def normalizeText(text):
+		normalized = []
+		for char in str(text):
+			decomposed = unicodedata.normalize('NFKD', char)
+			baseChar = decomposed[0] if len(decomposed) > 0 else char
+			if baseChar in baseVowels:
+				normalized.append(baseChar)
+			else:
+				normalized.append(char)
+		return ''.join(normalized)
+	def sortKey(word):
+		normalized = normalizeText(word)
+		return [charOrder.get(char, len(customAlphabet)) for char in normalized]
+	sortedDF = sortedDF.sort_values(by=sortedColumn, key=lambda x: x.map(sortKey))
+	return sortedDF
+
 if tabs == 'Catalogue':
 	st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">CATALOGUE</font></b>', unsafe_allow_html=True)
 	st.write('<b><font style="font-size: 25px">Search</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
-	data1 = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv', usecols=['name', 'altName', 'cer', 'lat', 'lon', 'writ', 'type', 'countr', 'ha', 'bibl', 'order'])
+	data2 = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv', usecols=['name', 'altName', 'cer', 'lat', 'lon', 'writ', 'type', 'countr', 'ha', 'bibl', 'order'])
+
+	data1 = customAlphabetSort(data2, 'name')
 
 	col1, col2, col3, col4, col5 = st.columns([9, 9, 9, 9, 9])
 	with col1:
@@ -402,6 +425,7 @@ elif tabs == 'Statistics':
 
 	localitiesCSV = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv')
 	localities = pd.DataFrame(localitiesCSV)
+	localities = customAlphabetSort(localities, 'name')
 	localities.rename(columns=({'order': 'ID', 'name': 'Name', 'altName': 'All names', 'cer': 'Certainty', 'writ': 'Written forms', 'type': 'Type', 'countr': 'Country or territory', 'ha': 'Helsinki Atlas map and grid', 'bibl': 'Bibliography'}), inplace=True)
 	localitiesCoord = localities[localities['lat'] != '–']
 
