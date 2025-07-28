@@ -64,7 +64,7 @@ def clearSearchForm():
 	st.session_state['4448155919644333772558'] = ''
 
 def customAlphabetSort(sortedDF, sortedColumn):
-	customAlphabet = list(' –-0123456789ʾ’ʿ‘`aāâáàäbcçdḍeēêéèëfgğǧhḫḥiīîíìıïjklmnoōôóöpqrřsṣşštṭţuūûúùüvwxyzAĀÂÁÀÄBCÇDEĒÊÉÈËFGĞHḪḤIĪÎÍÌİÏJKLMNOŌÔÓÖPQRŘSṢŞŠTṬŢUŪÛÚÙÜVWXYZ!"#$%_()*+,./:;<=>?@[\]^&{|}~')
+	customAlphabet = list(' –-0123456789ʾ’ʿ‘`AaĀāÂâÁáÀàÄäBbCcÇçDdḌḍḎḏEeĒēÉéÊêÈèËëFfGgĞğǦǧHhḪḫḤḥIiĪīÎîÍíÌìİıÏïJjKkLlMmNnOoŌōÔôÓóÖöPpQqRrŘřSsṢṣŞşŠšTtṬṭŢţṮṯUuŪūÛûÚúÙùÜüVvWwXxYyZz!"#$%_()*+,./:;<=>?@[\]^&{|}~')
 	charOrder = {char: i for i, char in enumerate(customAlphabet)}
 	baseVowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
 	def normalizeText(text):
