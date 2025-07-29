@@ -64,18 +64,20 @@ def clearSearchForm():
 	st.session_state['4448155919644333772558'] = ''
 
 def customAlphabetSort(sortedDF, sortedColumn):
-	customAlphabet = list(' –-0123456789ʾ’ʿ‘`AaĀāÂâÁáÀàÄäBbCcÇçDdḌḍḎḏEeĒēÉéÊêÈèËëFfGgĞğǦǧHhḪḫḤḥIiĪīÎîÍíÌìİıÏïJjKkLlMmNnOoŌōÔôÓóÖöPpQqRrŘřSsṢṣŞşŠšTtṬṭŢţṮṯUuŪūÛûÚúÙùÜüVvWwXxYyZz!"#$%_()*+,./:;<=>?@[\]^&{|}~')
-	charOrder = {char: i for i, char in enumerate(customAlphabet)}
+	customAlphabet = list(' .–-0₀1₁2₂3₃4₄5₅6₆7₇8₈9₉ʾ’ʿ‘`AaĀāÂâÁáÀàÄäBbCcÇçDdḌḍḎḏEeĒēÉéÊêÈèËëFfGgĞğǦǧHhḪḫḤḥIiĪīÎîÍíÌìİıÏïJjKkLlMmNnOoŌōÔôÓóÖöPpQqRrŘřSsṢṣŞşŠšTtṬṭŢţṮṯUuŪūÛûÚúÙùÜüVvWwXxYyZz!"#$%_()*+,/:;<=>?@[]^&{|}~')
+	lowercaseAlphabet = [char.lower() for char in customAlphabet]
+	charOrder = {char: i for i, char in enumerate(lowercaseAlphabet)}
 	baseVowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
 	def normalizeText(text):
 		normalized = []
 		for char in str(text):
-			decomposed = unicodedata.normalize('NFKD', char)
-			baseChar = decomposed[0] if len(decomposed) > 0 else char
+			lowerChar = char.lower()
+			decomposed = unicodedata.normalize('NFKD', lowerChar)
+			baseChar = decomposed[0] if len(decomposed) > 0 else lowerChar
 			if baseChar in baseVowels:
 				normalized.append(baseChar)
 			else:
-				normalized.append(char)
+				normalized.append(lowerChar)
 		return ''.join(normalized)
 	def sortKey(word):
 		normalized = normalizeText(word)
@@ -88,7 +90,6 @@ if tabs == 'Catalogue':
 	st.write('<b><font style="font-size: 25px">Search</font></b> (case insensitive, regular expressions allowed):', unsafe_allow_html=True)
 
 	data2 = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv', usecols=['name', 'altName', 'cer', 'lat', 'lon', 'writ', 'type', 'countr', 'ha', 'bibl', 'order'])
-
 	data1 = customAlphabetSort(data2, 'name')
 
 	col1, col2, col3, col4, col5 = st.columns([9, 9, 9, 9, 9])
