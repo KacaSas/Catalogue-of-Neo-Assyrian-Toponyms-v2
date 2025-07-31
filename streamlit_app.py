@@ -346,6 +346,8 @@ elif tabs == 'References':
 
 	‣ Titolo, A., Palmisano, A., 2025: *UnitoAssyrianGovernance/villages-to-empire-dataset: Paper submission version (1.0)*. DOI: https://doi.org/10.5281/zenodo.15111789.
 
+	‣ *Trismegistos: An interdisciplinary portal of the ancient world*. Leuven: KU Leuven. https://www.trismegistos.org.
+
 	‣ *Vici.org*. https://vici.org/.
 
 	‣ Ziegler, N., Langlois, A.-I., 2017: *Les toponymes paléo-babyloniens de la Haute-Mésopotamie. La Haute-Mésopotamie au IIe millénaire av. J.-C.* MTT I/1. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4393 (https://books.openedition.org/cdf/4393).
