@@ -350,6 +350,8 @@ elif tabs == 'References':
 
 	‣ *Vici.org*. https://vici.org/.
 
+	‣ Zadok, R. 1985: *Geographical names according to New- and Late-Babylonian texts*. RGTC 8. Wiesbaden: Dr. Ludwig Reichert Verlag.
+
 	‣ Ziegler, N., Langlois, A.-I., 2017: *Les toponymes paléo-babyloniens de la Haute-Mésopotamie. La Haute-Mésopotamie au IIe millénaire av. J.-C.* MTT I/1. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4393 (https://books.openedition.org/cdf/4393).
 
 	### <br>**Cuneiform fonts**
