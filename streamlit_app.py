@@ -314,6 +314,8 @@ elif tabs == 'References':
 
 	‣ de Graauw, A., 2022: *Ancient Ports and Harbours, The Catalogue*. 8th ed. Grenoble. pdf downloadable from A. de Graauw, *Ancient Ports – Ports antiques*, website: http://www.ancientportsantiques.com/docs-pdf/, catalogue: https://www.ancientportsantiques.com/the-catalogue/.
 
+	‣ Grayson, A. K., 1975: *Assyrian and Babylonian Chronicles*. New York: J. J. Augustin Publisher.
+
 	‣ Holappa, Maija: *Helsinki Atlas Sites + CIGS*. https://www.google.com/maps/d/u/0/viewer?mid=1XWivnuuHzEfy0BJ6nMOdRbkLojLzahA&ll.
 
 	‣ *OpenStreetMap*. https://www.openstreetmap.org/.
@@ -333,6 +335,8 @@ elif tabs == 'References':
 	‣ Radner, K., 2006: *Provinz. C. Assyrien*. RlA 11, 42–68.
 
 	‣ Rattenborg, R., Johansson, C., Nett, S., Smidt, G. R., Andersson, J. 2021: *Cuneiform Inscriptions Geographical Site Index (CIGS)*. DOI: https://doi.org/10.5281/zenodo.5217600 (https://zenodo.org/record/5217600).
+
+	‣ *Reallexikon der Assyriologie und vorderasiatischen Archäologie (RlA)*. Berlin – Leipzig: De Gruyter, 1928–2018. https://publikationen.badw.de/de/rla/index.
 
 	‣ *The Royal Inscriptions of Assyria online (RIAo) Project*. http://oracc.museum.upenn.edu/riao/.
 
