@@ -8,12 +8,7 @@ Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cn
 * streamlit-on-Hover-tabs
 * streamlit-folium
 * folium
-* csv
-* pandas
-* time
-* datetime
-* os
-* base64
+* plotly
 
 ## Deployment
 https://cnat-2.streamlit.app/
