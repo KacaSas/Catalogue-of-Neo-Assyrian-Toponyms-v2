@@ -6,7 +6,7 @@ Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cn
 * streamlit 1.41.1
 * streamlit-aggrid 1.0.5
 * streamlit-on-Hover-tabs
-* streamlit-folium
+* streamlit-folium 0.24.0
 * folium
 * plotly
 
