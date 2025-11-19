@@ -302,6 +302,8 @@ elif tabs == 'References':
 
 	‣ Bagg, A. M., 2020: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Babylonien, Urarṭu und die östlichen Gebiete*. RGTC 7/3. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
+	‣ Brughmans, T., de Soto, P., Pažout, A. and Bjerregaard Vahlstrup, P., 2024: *Itiner-e: the digital atlas of ancient roads*. https://itiner-e.org/.
+
 	‣ Cancik-Kirschbaum, E., Hess, Ch., 2017: *Toponyme der mittelassyrischen Texte: Der Westen des mittelassyrischen Reiches. Obermesopotamien im 2. Jt. v.Chr*. MTT I/2. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4439 (https://books.openedition.org/cdf/4439).
 
 	‣ *CDLI: Proveniences*. https://cdli.mpiwg-berlin.mpg.de/proveniences/.
@@ -341,6 +343,8 @@ elif tabs == 'References':
 	‣ *The Royal Inscriptions of Assyria online (RIAo) Project*. http://oracc.museum.upenn.edu/riao/.
 
 	‣ *The Royal Inscriptions of the Neo-Assyrian Period (RINAP)*. http://oracc.museum.upenn.edu/rinap/.
+
+	‣ de Soto, P. et al., 2025: *A High-Resolution Dataset of Roads of the Roman Empire: Itiner-e static version 2024*. Zenodo. https://doi.org/10.5281/zenodo.17122148.
 
 	‣ *State Archives of Assyria Online (SAAo)*. http://oracc.museum.upenn.edu/saao/.
 
