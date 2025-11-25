@@ -12,6 +12,7 @@ import time
 import plotly.express as px
 from PIL import Image
 import unicodedata
+from streamlit_js_eval import streamlit_js_eval
 
 st.set_page_config(page_title='Catalogue of Neo-Assyrian Toponyms 2', page_icon='resources/icon/icon.png', layout='wide')  # change favicon and page title
 
@@ -396,6 +397,8 @@ elif tabs == 'References':
 elif tabs == 'Statistics':
 	st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">STATISTICS</font></b>', unsafe_allow_html=True)
 
+	windowSize = streamlit_js_eval(js_expressions='[window.innerWidth, window.innerHeight]', key='windowSize')
+
 	newEditedDeleted = pd.read_csv('resources/data/000-newEditedDeleted.csv')
 	newEditedDeleted.sort_values('appended', ascending=False, inplace=True)
 	newEditedDeleted['appended'] = newEditedDeleted['appended'].str.replace('-(', ' (')
@@ -428,13 +431,25 @@ elif tabs == 'Statistics':
 					st.write('<b><font style="font-size: 1em; color: #ffffab">', newEditedDeleted['title'].iloc[x], '</font></b> <font style="font-size: 1em"> (ID: ', str(newEditedDeleted['order'].iloc[x]), ')</font>', unsafe_allow_html=True)
 				x = x+1
 
-		colum1, colum2, colum3, colum4, colum5 = st.columns([15, 0.3, 15, 0.3, 15], gap='small')
-		with colum1:
-			listRecentChanges(0, 20)
-		with colum3:
-			listRecentChanges(20, 20)
-		with colum5:
-			listRecentChanges(40, 20)
+		windowSize = streamlit_js_eval(js_expressions='[window.innerWidth, window.innerHeight]', key='windowSize')
+		if windowSize:
+			width, height = windowSize
+			if width < 768:
+				listRecentChanges(0, 60)
+			elif width < 1350:
+				colum1, colum2, colum3, colum4, colum5 = st.columns([1, 15, 3, 15, 1], gap='small')
+				with colum2:
+					listRecentChanges(0, 30)
+				with colum4:
+					listRecentChanges(30, 30)
+			else:
+				colum1, colum2, colum3, colum4, colum5 = st.columns([15, 0.3, 15, 0.3, 15], gap='small')
+				with colum1:
+					listRecentChanges(0, 20)
+				with colum3:
+					listRecentChanges(20, 20)
+				with colum5:
+					listRecentChanges(40, 20)
 
 	localitiesCSV = pd.read_csv('resources/data/AssyrianProject-AllNoDupl.csv')
 	localities = pd.DataFrame(localitiesCSV)
