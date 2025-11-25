@@ -435,10 +435,10 @@ elif tabs == 'Statistics':
 			if width < 768:
 				listRecentChanges(0, 60)
 			elif width < 1350:
-				colum1, colum2, colum3, colum4, colum5 = st.columns([1, 15, 3, 15, 1], gap='small')
-				with colum2:
+				colum1, colum2, colum3 = st.columns([15, 3, 15], gap='small')
+				with colum1:
 					listRecentChanges(0, 30)
-				with colum4:
+				with colum3:
 					listRecentChanges(30, 30)
 			else:
 				colum1, colum2, colum3, colum4, colum5 = st.columns([15, 0.3, 15, 0.3, 15], gap='small')
