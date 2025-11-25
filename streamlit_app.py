@@ -397,8 +397,6 @@ elif tabs == 'References':
 elif tabs == 'Statistics':
 	st.write('<b><font style="font-family: Linux Libertine Display, sans-serif; font-size: 2.1em">STATISTICS</font></b>', unsafe_allow_html=True)
 
-	windowSize = streamlit_js_eval(js_expressions='[window.innerWidth, window.innerHeight]', key='windowSize')
-
 	newEditedDeleted = pd.read_csv('resources/data/000-newEditedDeleted.csv')
 	newEditedDeleted.sort_values('appended', ascending=False, inplace=True)
 	newEditedDeleted['appended'] = newEditedDeleted['appended'].str.replace('-(', ' (')
