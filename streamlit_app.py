@@ -297,6 +297,8 @@ elif tabs == 'References':
 
 	‣ *Archival Texts of the Assyrian Empire (ATAE)*. http://oracc.museum.upenn.edu/atae/.
 	
+	‣ Aslan, Alper, 2025: *From the Earliest Settlements to the Historical Periods: Archaeological sites in the Eastern Anatolian Highlands (Türkiye) from the Chalcolithic to the Iron Age.* Zenodo. https://doi.org/10.5281/zenodo.17550848 (https://zenodo.org/records/17550848).
+
 	‣ Bagg, A. M., 2007: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Die Levante*. RGTC 7/1. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
 	‣ Bagg, A. M., 2017: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Zentralassyrien und benachbarte Gebiete, Ägypten und die arabische Halbinsel*. RGTC 7/2. Wiesbaden: Dr. Ludwig Reichert Verlag.
