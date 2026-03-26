@@ -295,6 +295,8 @@ elif tabs == 'References':
 
 	‣ Anastasio, S., Lebeau, M., Sauvage, M., 2004: *Atlas of Preclassical Upper Mesopotamia*. Subartu XIII. Turnhout: Brepols Publishers.
 
+	‣ *Anatolian Atlas*. Center for Ancient Middle Eastern Landscapes (CAMEL) at the Institute for the Study of Ancient Cultures (ISAC). Chicago: The University of Chicago. https://atlas.archaeolog.a2hosted.com/.
+
 	‣ *Archival Texts of the Assyrian Empire (ATAE)*. http://oracc.museum.upenn.edu/atae/.
 	
 	‣ Aslan, Alper, 2025: *From the Earliest Settlements to the Historical Periods: Archaeological sites in the Eastern Anatolian Highlands (Türkiye) from the Chalcolithic to the Iron Age.* Zenodo. https://doi.org/10.5281/zenodo.17550848 (https://zenodo.org/records/17550848).
