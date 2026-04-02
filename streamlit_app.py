@@ -106,7 +106,7 @@ if tabs == 'Catalogue':
 		locBibliography = st.text_input('Bibliography:', key=4448155919644333772558, label_visibility='visible')
 
 	with col5:
-		clearSearchForm = st.button('Clear form', key='clearSearchForm', on_click=clearSearchForm, use_container_width=True)  # clear form
+		clearSearchForm = st.button('Clear form', key='clearSearchForm', on_click=clearSearchForm, width='stretch')  # clear form
 
 	if locName != '':
 		foundName = data1.loc[data1['altName'].str.contains(locName, case=False, regex=True, na=False)]
@@ -259,10 +259,10 @@ if tabs == 'Catalogue':
 					if len(df2) != 0:
 						folium.Marker([row['lat'], row['lon']], tooltip=tooltip, icon=folium.Icon(color='red', icon='none')).add_to(map4)
 						folium.LayerControl(position='bottomleft').add_to(map4)
-						st_data = st_folium(map4, height=810, use_container_width=True)
+						st_data = st_folium(map4, height=810, width='stretch')
 					else:
 						folium.LayerControl(position='bottomleft').add_to(map4)
-						st_data = st_folium(map4, height=810, use_container_width=True)
+						st_data = st_folium(map4, height=810, width='stretch')
 						st.markdown('<font style="color:#FF4B4B"><b>Coordinates unknown or unavailable.</b></font>', unsafe_allow_html=True)
 		else:
 			st.write('')
@@ -461,18 +461,18 @@ elif tabs == 'Statistics':
 
 	with st.expander('', expanded=True):
 		st.write('<b><font style="font-size: 1.5em; color: #ffffab">All localities </font><br><font style="font-size: 1.1em">Count: ', localities['ID'].count(), '</font></b>', unsafe_allow_html=True)
-		st.dataframe(localities, use_container_width=True, hide_index=True)
+		st.dataframe(localities, width='stretch', hide_index=True)
 
 	with st.expander('', expanded=True):
 		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Localities with coordinates </font><br><font style="font-size: 1.1em">Count: ', localitiesCoord['ID'].count(), '</font></b>', unsafe_allow_html=True)
-		st.dataframe(localitiesCoord, use_container_width=True, hide_index=True)
+		st.dataframe(localitiesCoord, width='stretch', hide_index=True)
 
 	with st.expander('', expanded=True):
 		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Geographical distribution</font></b>', unsafe_allow_html=True)
 		localitiesLatLon = pd.DataFrame(localitiesCoord, columns=['lat', 'lon'])
 		localitiesLatLon['lat'] = localitiesLatLon['lat'].astype(float)
 		localitiesLatLon['lon'] = localitiesLatLon['lon'].astype(float)
-		st.map(localitiesLatLon, use_container_width=True)
+		st.map(localitiesLatLon, width='stretch')
 
 	with st.expander('', expanded=True):
 		st.write('<b><font style="font-size: 1.5em; color: #ffffab">Some other statistics</font></b>', unsafe_allow_html=True)
@@ -490,7 +490,7 @@ elif tabs == 'Statistics':
 
 		figCSV = px.pie(localities9, values=localities9.Count, names=plotBy, color_discrete_sequence=px.colors.sequential.Turbo, height=pieHeigth1)  # colors: https://plotly.com/python/builtin-colorscales/
 		figCSV.update_layout(legend=dict(font=dict(size = 17)))
-		st.plotly_chart(figCSV, theme=None, use_container_width=True)  # Streamlit theme used without theme=None
+		st.plotly_chart(figCSV, theme=None, width='stretch')  # Streamlit theme used without theme=None
 
 elif tabs == 'Downloads':
 	c1, c2, c3 = st.columns([1, 17, 1], gap='small')
@@ -509,14 +509,14 @@ elif tabs == 'Downloads':
 				st.download_button(
 					label='Download',
 					data=file,
-					file_name=timestr + '_CNATv2-Toponyms.csv', use_container_width=True,
+					file_name=timestr + '_CNATv2-Toponyms.csv', width='stretch',
 					)
 		with col1:
 			st.write('<font style="font-size: 1.5em; color: #ffffab"><b>Catalogue app</b></font>', unsafe_allow_html=True)
 		with col2:
 			st.write('<font style="font-size: 1.5em">available at GitHub</font>', unsafe_allow_html=True)
 		with col3:
-			st.link_button('Visit', 'https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2', use_container_width=True)
+			st.link_button('Visit', 'https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2', width='stretch')
 
 # adding footer
 footer = """<style>
