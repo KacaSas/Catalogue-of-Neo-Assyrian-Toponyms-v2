@@ -1,7 +1,7 @@
 streamlit==1.53.0
+streamlit-aggrid==1.0.5
 streamlit-folium
 streamlit-js-eval
 streamlit-on-Hover-tabs
-streamlit-aggrid
 folium
 plotly
