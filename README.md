@@ -3,10 +3,11 @@
 Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cnat.zcu.cz/catalog).
 
 ## Requirements
-* streamlit 1.41.1
+* streamlit 1.53.0
 * streamlit-aggrid 1.0.5
 * streamlit-on-Hover-tabs
-* streamlit-folium 0.24.0
+* streamlit-folium
+* streamlit-js-eval
 * folium
 * plotly
 
