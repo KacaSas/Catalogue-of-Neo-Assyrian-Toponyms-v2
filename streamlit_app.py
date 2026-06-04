@@ -518,7 +518,7 @@ elif tabs == 'Downloads':
 		with col3:
 			st.link_button('Visit', 'https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2', width='stretch')
 
-# adding footer
+# footer
 footer = """<style>
 .footer a:link, .footer a:visited {
 color: #575656;
