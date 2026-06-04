@@ -520,11 +520,12 @@ elif tabs == 'Downloads':
 
 # adding footer
 footer = """<style>
-background-color: transparent;
-text-decoration: underline;
+.footer a:link, .footer a:visited {
+color: #575656;
+text-decoration: none;
 }
 
-a:hover, a:active {
+.footer a:hover, .footer a:active {
 color: red;
 background-color: transparent;
 text-decoration: underline;
@@ -541,7 +542,7 @@ text-align: left;
 }
 </style>
 <div class="footer">
-<p>KacaSas 2025</p>
+<p><a href="https://zcu.academia.edu/Kate%C5%99ina%C5%A0a%C5%A1kov%C3%A1" target="_blank">KacaSas</a> 2025</p>
 </div>
 """
 st.sidebar.markdown(footer, unsafe_allow_html=True)
