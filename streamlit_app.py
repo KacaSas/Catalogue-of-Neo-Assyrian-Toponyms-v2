@@ -315,6 +315,8 @@ elif tabs == 'References':
 
 	‣ *The Digital Archaeological Atlas of the Holy Land (DAAHL)*. https://daahl.ucsd.edu/DAAHL/Home.php.
 
+	‣ Edzard, D. O., Farber, G., Sollberger, E., 1977: *Die Orts- und Gewässernamen der präsargonischen und sargonischen Zeit*. RGTC 1. Wiesbaden: Dr. Ludwig Reichert Verlag.
+
 	‣ Fink, Ch., 2017: *Fundorte und Karten. Obermesopotamien im 2. Jt. v.Chr.* MTT I/3. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4487 (https://books.openedition.org/cdf/4487).
 
 	‣ *GeoNames*. https://www.geonames.org/.
