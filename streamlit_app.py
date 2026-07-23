@@ -307,6 +307,8 @@ elif tabs == 'References':
 
 	‣ Bagg, A. M., 2020: *Die Orts- und Gewässernamen der neuassyrischen Zeit. Babylonien, Urarṭu und die östlichen Gebiete*. RGTC 7/3. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
+	‣ Belmonte Marín, J. A., 2001: *Die Orts- und Gewässernamen der Texte aus Syrien im 2. Jt. v. Chr.* RGTC 12/2. Wiesbaden: Dr. Ludwig Reichert Verlag.
+
 	‣ Brughmans, T., de Soto, P., Pažout, A. and Bjerregaard Vahlstrup, P., 2024: *Itiner-e: the digital atlas of ancient roads*. https://itiner-e.org/.
 
 	‣ Cancik-Kirschbaum, E., Hess, Ch., 2017: *Toponyme der mittelassyrischen Texte: Der Westen des mittelassyrischen Reiches. Obermesopotamien im 2. Jt. v.Chr*. MTT I/2. Paris: Collège de France, SEPOA. DOI: https://doi.org/10.4000/books.cdf.4439 (https://books.openedition.org/cdf/4439).
@@ -314,6 +316,8 @@ elif tabs == 'References':
 	‣ *CDLI: Proveniences*. https://cdli.mpiwg-berlin.mpg.de/proveniences/.
 
 	‣ *The Digital Archaeological Atlas of the Holy Land (DAAHL)*. https://daahl.ucsd.edu/DAAHL/Home.php.
+
+	‣ Edzard, D. O., Farber, G., 1974: *Die Orts- und Gewässernamen der Zeit der 3. Dynastie von Ur*. RGTC 2. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
 	‣ Edzard, D. O., Farber, G., Sollberger, E., 1977: *Die Orts- und Gewässernamen der präsargonischen und sargonischen Zeit*. RGTC 1. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
@@ -324,6 +328,8 @@ elif tabs == 'References':
 	‣ de Graauw, A., 2022: *Ancient Ports and Harbours, The Catalogue*. 8th ed. Grenoble. pdf downloadable from A. de Graauw, *Ancient Ports – Ports antiques*, website: http://www.ancientportsantiques.com/docs-pdf/, catalogue: https://www.ancientportsantiques.com/the-catalogue/.
 
 	‣ Grayson, A. K., 1975: *Assyrian and Babylonian Chronicles*. New York: J. J. Augustin Publisher.
+
+	‣ Groneberg, B., 1980: *Die Orts- und Gewässernamen der altbabylonischen Zeit*. RGTC 3. Wiesbaden: Dr. Ludwig Reichert Verlag.
 
 	‣ Holappa, Maija: *Helsinki Atlas Sites + CIGS*. https://www.google.com/maps/d/u/0/viewer?mid=1XWivnuuHzEfy0BJ6nMOdRbkLojLzahA&ll.
 
