@@ -1,6 +1,6 @@
 # Catalogue of Neo-Assyrian Toponyms 2
-![Repository size](https://img.shields.io/github/repo-size/vuejs/vue)
-![Latest commit dat](https://img.shields.io/github/last-commit/vuejs/vue)
+![Repository size](https://img.shields.io/github/repo-size/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2)
+![Latest commit date](https://img.shields.io/github/last-commit/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2)
 
 Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cnat.zcu.cz/catalog).
 
