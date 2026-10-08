@@ -381,15 +381,15 @@ elif tabs == 'References':
 
 	### <br>**Cuneiform fonts**
 
-	‣ *Assurbanipal.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *Assurbanipal.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://hethport.net/cuneifont/.
 
 	‣ *CuneiformComposite.ttf* created by Steve Tinney, available at The Open Richly Annotated Cuneiform Corpus website. http://oracc.museum.upenn.edu/doc/help/visitingoracc/fonts/.
 
 	‣ *Old Babylonian Freie* created by Corvin R. Ziegeler, available at https://refubium.fu-berlin.de/handle/fub188/45271 and https://github.com/crzfub/OB-Freie.
 
-	‣ *Santakku.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *Santakku.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://hethport.net/cuneifont/.
 
-	‣ *SantakkuM.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://www.hethport.uni-wuerzburg.de/cuneifont/.
+	‣ *SantakkuM.ttf* created by Sylvie Vanséveren, available at the Hethitologie Portal Mainz. https://hethport.net/cuneifont/.
 
 	‣ *Sinacherib.ttf* created by Kateřina Šašková, available at http://home.zcu.cz/~ksaskova/.
 
