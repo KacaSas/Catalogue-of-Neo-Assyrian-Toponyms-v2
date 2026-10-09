@@ -17,4 +17,4 @@ Another interface for data from the Catalog of Neo-Assyrian Toponyms (https://cn
 https://cnat-2.streamlit.app/
 
 ## Screenshot
-![https://github.com/KacaSas/Catalogue-of-Neo-Assyrian-Toponyms-v2/tree/main/resources/images/Screenshot_Catalogue-of-Neo-Assyrian-Toponyms-2.jpg]
+![Screenshot](resources/images/Screenshot_Catalogue-of-Neo-Assyrian-Toponyms-2.jpg)
